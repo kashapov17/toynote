@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file config.hpp
  * @brief Файл конфигурации.
  ***************************
  * @author Кирилл Пушкарёв
@@ -8,8 +8,8 @@
  * @author Кашапов Ярослав
  * @date 2020
  */
-#ifndef CONFIG
-#define CONFIG
+#ifndef CONFIG_HPP
+#define CONFIG_HPP
 
 #include <QtGlobal> // QT_TRANSLATE_NOOP
 
@@ -23,8 +23,8 @@ namespace Config
  */
 const char applicationName[] = QT_TRANSLATE_NOOP("Config", "Toynote");
 
-//! Версия приложения
-const char applicationVersion[] = "20191224";
+/// Версия приложения
+const char applicationVersion[] = "20200805";
 
 /**
  * @brief Фильтр для имён файлов записных книжек.
@@ -41,5 +41,5 @@ const char applicationVersion[] = "20191224";
 const char notebookFileNameFilter[] = QT_TRANSLATE_NOOP("Config", "Notebooks (*.tnb)");
 
 }
-#endif // CONFIG
+#endif // CONFIG_HPP
 

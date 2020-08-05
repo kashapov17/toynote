@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file editnotedialog.hpp
  * @brief Заголовочный файл класса EditNoteDialog.
  ***************************
  * @author Кирилл Пушкарёв

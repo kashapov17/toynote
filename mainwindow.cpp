@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file mainwindow.cpp
  * @brief Файл реализации класса MainWindow.
  ***************************
  * @author Кирилл Пушкарёв
@@ -18,14 +18,20 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QTextStream>
 #include <QMessageBox>
 #include <QSaveFile>
 #include <QtGlobal> // qVersion()
+#include <QDesktopServices> // openUrl()
+#include <QUrl> // QUrl()
+#include <QRandomGenerator>
+#include <QDate>
+#include <QString>
 
 #include "config.hpp"
 #include "editnotedialog.hpp"
 
-/*!
+/**
  * Конструирует объект класса с родительским объектом @a parent.
  * Параметр @p parent имеет значение по умолчанию 0. Указывать родительский
  * объект нужно, например чтобы дочерний объект был автоматически удалён
@@ -104,15 +110,109 @@ void MainWindow::displayAbout()
     // Устанавливаем основной текст в окне aboutDlg
     aboutDlg.setText(tr("%1 %2<br>"
         "Author: <a href=\"mailto:kpushkarev@sfu-kras.ru\">Kirill Pushkaryov</a>, 2019.<br>"
+        "Edited in 2020 by <a href=\"mailto:y-kashapov@inbox.ru\">"
+        "Yaroslav Kashapov Fanizovich</a>,<br>КИ19-07б, 031939609.<br>"
+        "Home repo: <a href=\"https://github.com/kashapovd/toynote\">github</a><br>"
+        "License: LGPLv3.<br>"
         "This application is dynamically linked against the "
         "<a href=\"https://www.qt.io/developers/\">Qt Library</a> "
-        "v. %3, which is under the LGPLv3 license.<br>"
-        "Icons by <a href=\"http://tango.freedesktop.org/"
-        "Tango_Desktop_Project\">The Tango! Desktop Project</a>.")
+        "v. %3.<br>"
+        "Icons by the <a href=\"http://tango.freedesktop.org/"
+        "Tango_Icon_Library\">Tango Icon Library</a>.")
         .arg(Config::applicationName).arg(Config::applicationVersion)
         .arg(qVersion()));
     // Отображаем окно как модальное (блокирующее все остальные окна)
     aboutDlg.exec();
+}
+
+void MainWindow::toCourses()
+{
+    // Открываем страницу е-курсов
+    QDesktopServices::openUrl(QUrl("https://e.sfu-kras.ru",
+                                   QUrl::TolerantMode));
+}
+
+void MainWindow::lottery()
+{
+    // Список призов
+    QString prizes[] =
+    {
+        "Notepad",
+        "Chinese Arduino Nano",
+        "USB flash drive 64GB",
+        "Original Arduino Uno",
+        "RaspberryPi 4 8GB",
+        "Librem 5",
+        "Ultabook with 10-gen i7",
+        "Metcal soldering station",
+        "Brand new GTX3080",
+        "Pass to IKIT"
+    };
+    // Каждый билет содержит его номер и наименование приза
+    struct ducket
+    {
+        int ducket_number;
+        QString prize;
+    };
+    // Последняя цифра номера зачётной книжки
+    const int n = 9;
+    // Массив билетов. n+1 - количество выигрышных билетов
+    std::vector<ducket> bag(n+1);
+    // Формирование билетов. Гарантируется, что номера не совпадут
+    for (int i = 0; i <= n; i++)
+    {
+        // назначение призов из списка prizes
+        bag.at(i).prize = prizes[i];
+        // получаем случайный номер для билета.
+        int ducket_number = QRandomGenerator::global()->bounded(1, 20);
+        // номер билета может совпасть, провеяем это
+        while(1)
+        {
+            bool number_used = false;
+            for (int j = i; j >=0; j--) {
+                if (bag.at(j).ducket_number == ducket_number)
+                    number_used = true;
+            }
+            // если номер не использовался, выходим из цикла
+            if (!number_used)
+                break;
+            // номер уже присвоен другому билету - получаем новый
+            ducket_number = QRandomGenerator::global()->bounded(1, 20);
+        }
+        // присваиваем номер билету
+        bag.at(i).ducket_number = ducket_number;
+    }
+
+    // Тянем билет
+    int roll = QRandomGenerator::global()->bounded(1, 20);
+    // Начальная позиция - ничего не выиграл
+    QString prize = "nothing!";
+    // Проверяем, есть ли билет с номером roll
+    for (auto &it : bag)
+    {
+        if (roll == it.ducket_number)
+            prize = it.prize;
+        // билета нет, значит начальная позиция
+    }
+    // Создаём окно с датой и результатами лотереи
+    QMessageBox lotBox(this);
+    lotBox.setWindowTitle("Lottery");
+    // Устанавливаем текст окна. Вместо %1 метод arg() подставит в строку
+    // текущую дату, а вместо %2 - наименование приза
+    lotBox.setText(tr("Date: %1<br>"
+                      "Your prize: %2")
+                   .arg(QDate().currentDate().toString())
+                   .arg(prize));
+    // Добавляем единственную кнопку "выход"
+    lotBox.setStandardButtons(QMessageBox::Cancel);
+    lotBox.setDefaultButton(QMessageBox::Cancel);
+    // Отображаем окно
+    lotBox.exec();
+}
+
+void MainWindow::exit()
+{
+    QCoreApplication::instance()->quit();
 }
 
 void MainWindow::newNotebook()
@@ -150,7 +250,7 @@ bool MainWindow::saveNotebook()
     else
     {
         // Cохраняем в текущий файл
-        saveNotebookToFile(mNotebookFileName);
+        saveNotebookToFile(mNotebookFileName, saveMode::BINARY);
     }
     // Сигнализируем о готовности
     emit notebookReady();
@@ -159,7 +259,7 @@ bool MainWindow::saveNotebook()
     return true;
 }
 
-bool MainWindow::saveNotebookAs()
+bool MainWindow::saveNotebookAs(saveMode mode)
 {
     // Если записная книжка не открыта, выдаём сообщение об этом
     if (!isNotebookOpen())
@@ -174,8 +274,16 @@ bool MainWindow::saveNotebookAs()
     {
         return false;
     }
-    // Сохраняем записную книжку в выбранный файл
-    saveNotebookToFile(fileName);
+    if (mode == saveMode::TEXT)
+    {
+        // Сохраняем записную книжку в выбранный файл в текстовом формате
+        saveNotebookToFile(fileName, saveMode::TEXT);
+    }
+    else
+    {
+        // Сохраняем записную книжку в выбранный файл
+        saveNotebookToFile(fileName, saveMode::BINARY);
+    }
     // Устанавливаем выбранное имя файла в качестве текущего
     setNotebookFileName(fileName);
     // Сигнализируем о готовности
@@ -183,6 +291,11 @@ bool MainWindow::saveNotebookAs()
     // Сигнализируем о сохранении записной книжки
     emit notebookSaved();
     return true;
+}
+
+bool MainWindow::saveNotebookAsText()
+{
+    return saveNotebookAs(saveMode::TEXT);
 }
 
 bool MainWindow::openNotebook()
@@ -307,21 +420,51 @@ bool MainWindow::newNote()
 
 void MainWindow::deleteNotes()
 {
+    // Нет заметок - нечего удалять
+    if (mNotebook->rowCount() == 0)
+        return;
+
     // Для хранения номеров строк создаём STL-контейнер "множество", элементы
     // которого автоматически упорядочиваются по возрастанию
+    QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
     std::set<int> rows;
     {
         // Получаем от таблицы заметок список индексов выбранных в настоящий момент
         // элементов
-        QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
         // Вставляем номера выбранных строк в rows
         for (const auto &i : idc)
         {
             rows.insert(i.row());
         }
     }
-    // Обходим множество номеров выбранных строк *по убыванию*, чтобы удаление предыдущих
-    // не сбивало нумерацию следующих
+
+    // Cтрока, содержащая названия заметок для удаления (выделенных заметок)
+    // будет отображена в окне подтверждения удаления заметок.
+    QString note_to_remove;
+    for (const auto &it : rows)
+    {
+        // если выбрана одна заметка
+        if (rows.size() == 1)
+        {
+            note_to_remove = mNotebook->operator[](it).title();
+        }
+        // если выбрано несколько
+        else
+        {
+           note_to_remove.append("• " + mNotebook->operator[](it).title() + "<br>");
+        }
+    }
+    int ret = QMessageBox::question(this, Config::applicationName,
+                          (rows.size() == 1) ?
+                          tr("Do you really want to remove the <i><b>%1<b><i>")
+                                        .arg(note_to_remove):
+                          tr("Do you really want to remove the following "
+                             "notes<br><br><i><b>%1<b><i>")
+                                        .arg(note_to_remove),
+                          QMessageBox::Yes | QMessageBox::No);
+    // Если NO, удалять не нужно.
+    if (ret == QMessageBox::No) return;
+
     for (auto it = rows.rbegin(); it != rows.rend(); ++it)
     {
         // Удаляем строку
@@ -353,7 +496,7 @@ void MainWindow::refreshWindowTitle()
  * отвечает непосредственно за сохранение и не предусматривает диалога с
  * пользователем.
  */
-void MainWindow::saveNotebookToFile(QString fileName)
+void MainWindow::saveNotebookToFile(QString fileName, saveMode mode)
 {
     // Если записная книжка не открыта, прерываем операцию
     if (!isNotebookOpen())
@@ -371,12 +514,33 @@ void MainWindow::saveNotebookToFile(QString fileName)
          * метода commit().
          */
         QSaveFile outf(fileName);
-        // Открываем файл только для записи
-        outf.open(QIODevice::WriteOnly);
-        // Привязываем к файлу поток, позволяющий выводить объекты Qt
-        QDataStream ost(&outf);
-        // Выводим записную книжку в файл
-        ost << *mNotebook;
+        // если необходимо записать в текстовый файл
+        if (mode == saveMode::TEXT)
+        {
+            // Открываем текстовый файл только для записи
+            outf.open(QIODevice::WriteOnly | QIODevice::Text);
+            // Привязываем к файлу текстовый поток, позволяющий выводить объекты Qt
+            QTextStream ost(&outf);
+            // Выводим записную книжку в файл
+            for (int i = 0; i < mNotebook->size(); i++) {
+                // выводим номер записи и количество записей в текущей записной книжке
+                ost << tr("+++ %1/%2 +++\n").arg(i+1).arg(mNotebook->size());
+                // выводим заголовок и текст записи
+                ost << tr("Title: %1\n").arg(mNotebook->operator[](i).title()) << mNotebook->operator[](i).text();
+                ost << tr("\n--- %1/%2 ---\n").arg(i+1).arg(mNotebook->size());
+                ost << tr("\n");
+            }
+        }
+        // записываем в двоичный файл
+        else
+        {
+            // Открываем файл только для записи
+            outf.open(QIODevice::WriteOnly);
+            // Привязываем к файлу поток, позволяющий выводить объекты Qt
+            QDataStream ost(&outf);
+            // Выводим записную книжку в файл
+            ost << *mNotebook;
+        }
         // Запускаем сохранение и смотрим результат.
         // В случае неудачи запускаем исключительную ситуацию (блок прерывается,
         // управление передаётся в блок catch)

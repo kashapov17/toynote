@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file editnotedialog.cpp
  * @brief Файл реализации класса EditNoteDialog.
  ***************************
  * @author Кирилл Пушкарёв
