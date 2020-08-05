@@ -6,5 +6,10 @@
         <file>icons/Notebook-open.svg</file>
         <file>icons/Notebook-save-as.svg</file>
         <file>icons/Notebook-save.svg</file>
+        <file>icons/exit.svg</file>
+        <file>icons/web.svg</file>
+        <file>icons/about.svg</file>
+        <file>icons/appicon.svg</file>
+        <file>icons/lottery.svg</file>
     </qresource>
 </RCC>
