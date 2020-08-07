@@ -13,6 +13,7 @@
 #include "ui_editnotedialog.h"
 
 #include "note.hpp"
+#include <QMessageBox>
 
 /**
 * Конструирует объект класса с родительским объектом @a parent.
@@ -50,6 +51,16 @@ void EditNoteDialog::setNote(Note *note)
     mNote = note;
 }
 
+void EditNoteDialog::setEditNoteText()
+{
+    mUi->plainTextEdit->setPlainText(mNote->text());
+}
+
+void EditNoteDialog::setEditNoteTitle()
+{
+    mUi->titleEdit->setText(mNote->title());
+}
+
 /**
  * Этот метод вызывается, когда пользователь подтверждает диалог, например
  * нажатием кнопки «OK». Метод изначально определён в базовом классе QDialog,
@@ -63,6 +74,29 @@ void EditNoteDialog::setNote(Note *note)
  */
 void EditNoteDialog::accept()
 {
+    if ((mUi->titleEdit->text() == "" and mUi->plainTextEdit->toPlainText() == ""))
+    {
+        QMessageBox::warning(this, tr("Error"),
+                             tr("Unable to create the note with empty title and body"),
+                             QMessageBox::Ok);
+        return;
+    }
+    if (mUi->titleEdit->text() == "")
+    {
+        QMessageBox::warning(this, tr("Error"),
+                             tr("Unable to create the note with empty title"),
+                             QMessageBox::Ok);
+        return;
+    }
+    if (mUi->plainTextEdit->toPlainText() == "")
+    {
+        QMessageBox::warning(this, tr("Error"),
+                             tr("Unable to create the note with empty body"),
+                             QMessageBox::Ok);
+        return;
+    }
+
+    //}
     // Читаем заголовок и текст заметки из полей диалога и записываем
     // их в соответствующие атрибуты заметки по указателю mNote
     mNote->setTitle(mUi->titleEdit->text());

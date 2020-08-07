@@ -21,13 +21,13 @@ int main(int argc, char *argv[])
 {
     // Создать объект класса QApplication. Класс QApplication является частью
     // библиотеки Qt и отвечает за функционирование программы в целом
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
     // Создать объект класса MainWindow. Класс MainWindow является частью
     // данной программы и отвечает за функционирование её главного окна
-    MainWindow w;
+    MainWindow window;
     // Отобразить главное окно
-    w.show();
+    window.show();
 
     // Начать обработку событий (щелчков мыши по элементам интерфейса и т. д.)
-    return a.exec();
+    return app.exec();
 }

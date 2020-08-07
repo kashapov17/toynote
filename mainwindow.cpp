@@ -23,9 +23,9 @@
 #include <QSaveFile>
 #include <QtGlobal> // qVersion()
 #include <QDesktopServices> // openUrl()
-#include <QUrl> // QUrl()
-#include <QRandomGenerator>
-#include <QDate>
+#include <QUrl>
+#include <QRandomGenerator> // bounded()
+#include <QDate> // currentDate()
 #include <QString>
 
 #include "config.hpp"
@@ -145,13 +145,13 @@ void MainWindow::lottery()
         "Librem 5",
         "Ultabook with 10-gen i7",
         "Metcal soldering station",
-        "Brand new GTX3080",
+        "Brand new RTX 3080Ti",
         "Pass to IKIT"
     };
     // Каждый билет содержит его номер и наименование приза
     struct ducket
     {
-        int ducket_number;
+        int number;
         QString prize;
     };
     // Последняя цифра номера зачётной книжки
@@ -163,40 +163,46 @@ void MainWindow::lottery()
     {
         // назначение призов из списка prizes
         bag.at(i).prize = prizes[i];
-        // получаем случайный номер для билета.
-        int ducket_number = QRandomGenerator::global()->bounded(1, 20);
+        // получаем случайный номер в диапазоне от 1 до 20 для билета.
+        int ducketNumber = QRandomGenerator::global()->bounded(1, 20);
         // номер билета может совпасть, провеяем это
+        //while(1)
         while(1)
         {
-            bool number_used = false;
-            for (int j = i; j >=0; j--) {
-                if (bag.at(j).ducket_number == ducket_number)
-                    number_used = true;
+            bool fNumberUsed = false;
+            for (int j = i; j >= 0; j--)
+            {
+                if (bag.at(j).number == ducketNumber)
+                {
+                    fNumberUsed = true;
+                }
             }
             // если номер не использовался, выходим из цикла
-            if (!number_used)
+            if (!fNumberUsed)
+            {
                 break;
+            }
             // номер уже присвоен другому билету - получаем новый
-            ducket_number = QRandomGenerator::global()->bounded(1, 20);
+            ducketNumber = QRandomGenerator::global()->bounded(1, 20);
         }
         // присваиваем номер билету
-        bag.at(i).ducket_number = ducket_number;
+        bag.at(i).number = ducketNumber;
     }
 
     // Тянем билет
     int roll = QRandomGenerator::global()->bounded(1, 20);
     // Начальная позиция - ничего не выиграл
-    QString prize = "nothing!";
+    QString prize = tr("nothing!");
     // Проверяем, есть ли билет с номером roll
     for (auto &it : bag)
     {
-        if (roll == it.ducket_number)
+        if (roll == it.number)
             prize = it.prize;
         // билета нет, значит начальная позиция
     }
     // Создаём окно с датой и результатами лотереи
     QMessageBox lotBox(this);
-    lotBox.setWindowTitle("Lottery");
+    lotBox.setWindowTitle(tr("Lottery"));
     // Устанавливаем текст окна. Вместо %1 метод arg() подставит в строку
     // текущую дату, а вместо %2 - наименование приза
     lotBox.setText(tr("Date: %1<br>"
@@ -274,16 +280,8 @@ bool MainWindow::saveNotebookAs(saveMode mode)
     {
         return false;
     }
-    if (mode == saveMode::TEXT)
-    {
-        // Сохраняем записную книжку в выбранный файл в текстовом формате
-        saveNotebookToFile(fileName, saveMode::TEXT);
-    }
-    else
-    {
-        // Сохраняем записную книжку в выбранный файл
-        saveNotebookToFile(fileName, saveMode::BINARY);
-    }
+    // Сохраняем записную книжку в выбранный файл
+    saveNotebookToFile(fileName, mode);
     // Устанавливаем выбранное имя файла в качестве текущего
     setNotebookFileName(fileName);
     // Сигнализируем о готовности
@@ -418,24 +416,39 @@ bool MainWindow::newNote()
     return true;
 }
 
+void MainWindow::editNote(QModelIndex idx)
+{
+    // Создаём диалог редактирования заметки
+    EditNoteDialog editDlg(this);
+    // Устанавливаем заголовок окна редактирования
+    editDlg.setWindowTitle(tr("Note Editor"));
+    // Передаём указатель на заметку, связанную с idx
+    editDlg.setNote(const_cast<Note *>(&mNotebook->operator[]((idx.row()))));
+    // В поле "текст заметки" окна редактирования загружаем имеющийся текст заметки
+    editDlg.setEditNoteText();
+    // В поле "название заметки" окна редактирования загружаем название
+    editDlg.setEditNoteTitle();
+    // запускаем отображение окна и обрабатываем результат "отмена"
+    if (editDlg.exec() == EditNoteDialog::Accepted)
+    {
+        return;
+    }
+    // сообщаем о изменении данных
+    mNotebook->dataChanged(idx, idx);
+}
+
 void MainWindow::deleteNotes()
 {
-    // Нет заметок - нечего удалять
-    if (mNotebook->rowCount() == 0)
-        return;
-
     // Для хранения номеров строк создаём STL-контейнер "множество", элементы
     // которого автоматически упорядочиваются по возрастанию
-    QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
     std::set<int> rows;
+    // Получаем от таблицы заметок список индексов выбранных в настоящий момент
+    // элементов
+    QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
+    // Вставляем номера выбранных строк в rows
+    for (const auto &i : idc)
     {
-        // Получаем от таблицы заметок список индексов выбранных в настоящий момент
-        // элементов
-        // Вставляем номера выбранных строк в rows
-        for (const auto &i : idc)
-        {
-            rows.insert(i.row());
-        }
+        rows.insert(i.row());
     }
 
     // Cтрока, содержащая названия заметок для удаления (выделенных заметок)
@@ -451,15 +464,17 @@ void MainWindow::deleteNotes()
         // если выбрано несколько
         else
         {
-           note_to_remove.append("• " + mNotebook->operator[](it).title() + "<br>");
+           note_to_remove.append(tr("<style>"
+                                        "p{"
+                                        "margin-left: 20px;"
+                                        "}</style>"
+                                    "<p>• ") + mNotebook->operator[](it).title());
         }
     }
     int ret = QMessageBox::question(this, Config::applicationName,
-                          (rows.size() == 1) ?
-                          tr("Do you really want to remove the <i><b>%1<b><i>")
-                                        .arg(note_to_remove):
-                          tr("Do you really want to remove the following "
-                             "notes<br><br><i><b>%1<b><i>")
+                          tr("Do you really want to remove the") + (
+                             (rows.size() == 1) ? tr(" following notes ") : tr(" ")) +
+                          tr("<i><b>%1<b><i>")
                                         .arg(note_to_remove),
                           QMessageBox::Yes | QMessageBox::No);
     // Если NO, удалять не нужно.
@@ -515,7 +530,7 @@ void MainWindow::saveNotebookToFile(QString fileName, saveMode mode)
          */
         QSaveFile outf(fileName);
         // если необходимо записать в текстовый файл
-        if (mode == saveMode::TEXT)
+        if (mode == TEXT)
         {
             // Открываем текстовый файл только для записи
             outf.open(QIODevice::WriteOnly | QIODevice::Text);

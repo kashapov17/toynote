@@ -452,6 +452,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>notesView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>editNote(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>204</x>
+     <y>152</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>displayAbout()</slot>
@@ -466,5 +482,6 @@
   <slot>exit()</slot>
   <slot>lottery()</slot>
   <slot>saveNotebookAs()</slot>
+  <slot>editNote(QModelIndex)</slot>
  </slots>
 </ui>
