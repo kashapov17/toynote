@@ -14,6 +14,7 @@
 #include <memory> // unique_ptr
 
 #include <QMainWindow>
+#include <QItemSelectionModel>
 
 #include "notebook.hpp"
 
@@ -93,6 +94,8 @@ private:
      * обрабатывать сигналы, например от активации пункта меню
      */
 private slots:
+    /// Отключает и скрывает список заметок
+    void disableNoteList(bool cond);
     /// Отображает окно с информацией о программе.
     void displayAbout();
     /// Переходит на самые лучшие e-курсы в мире.
@@ -119,8 +122,19 @@ private slots:
     void deleteNotes();
     /// Обновляет заголовок окна.
     void refreshWindowTitle();
+    /// Отключает возможность удаления заметок
+    void disableDeleteAction();
+    /** Каждая записная книжка имеет свой SelectionModel. При изменении модели,
+     * то есть при открытии новой книги заметок, в однажды уже связанных
+     * QItemSelectionModel::selectionChanged и MainWindow::disableDeleteAction необходимо изменить
+     * указатель QAbstractItemModel::selectionModel для текущей модели. Данный слот этим и занимается
+     * посредством связывания сигнала, сигнализирующего о смене области выделенных заметок, со слотом,
+     * который отключает возможность удаления заметок
+     */
+    void reconnectWithNewModel();
     /// Завершает работу программы.
     void exit();
+
     // В этом разделе перечисляются сигналы, которые выдаёт данный класс
 signals:
     /**
@@ -144,6 +158,10 @@ signals:
     void notebookSaved();
     /// Сигнализирует, что записная книжка успешно закрыта.
     void notebookClosed();
+    /// Сигнализирует, что записная книжка пуста
+    void notebookEmpty();
+    /// Сигнализирует, что записная книжка не пуста
+    void notebookNotEmpty();
     /*
      * В этом разделе перечисляются закрытые члены класса, которые обеспечивают
      * его работу и недоступны извне.

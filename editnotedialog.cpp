@@ -12,8 +12,9 @@
 // Заголовочный файл UI-класса, сгенерированного на основе editnotedialog.ui
 #include "ui_editnotedialog.h"
 
-#include "note.hpp"
 #include <QMessageBox>
+
+#include "note.hpp"
 
 /**
 * Конструирует объект класса с родительским объектом @a parent.
@@ -28,6 +29,8 @@ EditNoteDialog::EditNoteDialog(QWidget *parent) :
 {
     // Отображаем GUI, сгенерированный из файла editnotedialog.ui, в данном окне
     mUi->setupUi(this);
+    // инициализируем переменную notNewNote для избежания неопределённости
+    notNewNote = false;
 }
 
 /**
@@ -51,14 +54,12 @@ void EditNoteDialog::setNote(Note *note)
     mNote = note;
 }
 
-void EditNoteDialog::setEditNoteText()
+void EditNoteDialog::setNoteForEdit(Note *note)
 {
+    setNote(note);
     mUi->plainTextEdit->setPlainText(mNote->text());
-}
-
-void EditNoteDialog::setEditNoteTitle()
-{
     mUi->titleEdit->setText(mNote->title());
+    notNewNote = true;
 }
 
 /**
@@ -74,24 +75,27 @@ void EditNoteDialog::setEditNoteTitle()
  */
 void EditNoteDialog::accept()
 {
-    if ((mUi->titleEdit->text() == "" and mUi->plainTextEdit->toPlainText() == ""))
+    if ((mUi->titleEdit->text().isEmpty() and mUi->plainTextEdit->toPlainText().isEmpty()))
     {
         QMessageBox::warning(this, tr("Error"),
-                             tr("Unable to create the note with empty title and body"),
+                             (!notNewNote) ? tr("Unable to create the note with empty title and body") :
+                                            tr("Unable to save the note with empty title and body"),
                              QMessageBox::Ok);
         return;
     }
-    if (mUi->titleEdit->text() == "")
+    if (mUi->titleEdit->text().isEmpty())
     {
         QMessageBox::warning(this, tr("Error"),
-                             tr("Unable to create the note with empty title"),
+                             (!notNewNote) ? tr("Unable to create the note with empty title") :
+                                            tr("Unable to save the note with empty title"),
                              QMessageBox::Ok);
         return;
     }
-    if (mUi->plainTextEdit->toPlainText() == "")
+    if (mUi->plainTextEdit->toPlainText().isEmpty())
     {
         QMessageBox::warning(this, tr("Error"),
-                             tr("Unable to create the note with empty body"),
+                             (!notNewNote) ? tr("Unable to create the note with empty body") :
+                                            tr("Unable to save the note with empty body"),
                              QMessageBox::Ok);
         return;
     }
@@ -107,5 +111,6 @@ void EditNoteDialog::accept()
     // будет считаться подтверждённым и не закроется.
     // Таким образом, в данном случае метод EditNoteDialog::accept() не подменяет
     // собой метод QDialog::accept() совсем, а дополняет его.
+    if (notNewNote) notNewNote = false;
     QDialog::accept();
 }

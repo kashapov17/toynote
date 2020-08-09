@@ -27,6 +27,7 @@
 #include <QRandomGenerator> // bounded()
 #include <QDate> // currentDate()
 #include <QString>
+#include <QDebug>
 
 #include "config.hpp"
 #include "editnotedialog.hpp"
@@ -41,7 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), // Передаём parent конструктору базового класса
     mUi(new Ui::MainWindow) // Создаём объект Ui::MainWindow
 {
-
     // Присоединяем сигналы, соответствующие изменению статуса записной книжки,
     // к слоту, обеспечивающему обновление заголовка окна
     connect(this, &MainWindow::notebookReady, this, &MainWindow::refreshWindowTitle);
@@ -60,12 +60,56 @@ MainWindow::MainWindow(QWidget *parent) :
     // сигнал MainWindow::notebookCreated будет вызывать код, записанный в
     // фигурных скобках, то есть метод MainWindow::setWindowModified() с параметром true.
     connect(this, &MainWindow::notebookCreated, [this] { setWindowModified(true); });
+
+    // Действия, связанные с закрытием записной книжки
+    connect(this, &MainWindow::notebookClosed, [this]
+    {
+        // Отключаем возможность создания заметок через меню бар
+        mUi->actionNew_Note->setDisabled(true);
+        // Отключаем возможность удаления заметок через меню бар
+        mUi->actionDelete_Notes->setDisabled(true);
+        // Отключаем возможность отключения вида таблицы заметок
+        mUi->checkBox->setDisabled(true);
+        // Отключаем отображение таблицы заметок
+        mUi->notesView->setDisabled(true);
+        // Скрывает чек-бокс, который управляет отображением таблицы заметок
+        mUi->checkBox->setHidden(true);
+        // Скрывает таблицу заметок
+        mUi->notesView->setHidden(true);
+        // Отключаем возможность сохранять книжку в текущий файл
+        mUi->actionSave->setDisabled(true);
+        // Отключаем возможность сохранять книжку
+        mUi->actionSave_As->setDisabled(true);
+        // Отключаем возможность сохранять книжку в текстовом формате
+        mUi->actionSave_As_Text->setDisabled(true);
+        // Отключаем возможность закрывать записную книжку
+        mUi->actionCloseNotebook->setDisabled(true);
+    });
+    // Действия, связанные с готовностью записной книжки.
+    // Протовоположны действиям, связанным с закрытием записной книжки
+    connect(this, &MainWindow::notebookReady, [this]
+    {
+        mUi->actionNew_Note->setEnabled(true);
+        mUi->actionDelete_Notes->setEnabled(true);
+        mUi->checkBox->setEnabled(true);
+        mUi->notesView->setEnabled(true);
+        mUi->checkBox->setHidden(false);
+        mUi->notesView->setHidden(false);
+        mUi->actionSave->setEnabled(true);
+        mUi->actionSave_As->setEnabled(true);
+        mUi->actionSave_As_Text->setEnabled(true);
+        mUi->actionCloseNotebook->setEnabled(true);
+
+    });
+
+    // Для корректной работы selectionChange при открытии новых записных книжек,
+    // привязываем каждый раз новый SelectionModel
+    connect(this, &MainWindow::notebookReady, this, &MainWindow::reconnectWithNewModel);
+
     // Отображаем GUI, сгенерированный из файла mainwindow.ui, в данном окне
     mUi->setupUi(this);
     // Настраиваем таблицу заметок, чтобы её последняя колонка занимала всё доступное место
     mUi->notesView->horizontalHeader()->setStretchLastSection(true);
-    // Обновляем заголовок окна
-    refreshWindowTitle();
     // Создаём новую записную книжку
     newNotebook();
 }
@@ -79,6 +123,24 @@ MainWindow::~MainWindow()
 {
     // Удаляем объект Ui::MainWindow
     delete mUi;
+}
+
+void MainWindow::disableDeleteAction()
+{
+    mUi->actionDelete_Notes->setEnabled(mUi->notesView->selectionModel()->hasSelection());
+}
+
+void MainWindow::reconnectWithNewModel()
+{
+    connect(mUi->notesView->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &MainWindow::disableDeleteAction);
+    disableDeleteAction();
+}
+
+void MainWindow::disableNoteList(bool cond)
+{
+    mUi->notesView->setDisabled(cond);
+    mUi->notesView->setHidden(cond);
 }
 
 void MainWindow::displayAbout()
@@ -128,8 +190,8 @@ void MainWindow::displayAbout()
 void MainWindow::toCourses()
 {
     // Открываем страницу е-курсов
-    QDesktopServices::openUrl(QUrl("https://e.sfu-kras.ru",
-                                   QUrl::TolerantMode));
+    // ParsingMode = TolerantMode по умолчанию
+    QDesktopServices::openUrl(QUrl("https://e.sfu-kras.ru"));
 }
 
 void MainWindow::lottery()
@@ -158,15 +220,15 @@ void MainWindow::lottery()
     const int n = 9;
     // Массив билетов. n+1 - количество выигрышных билетов
     std::vector<ducket> bag(n+1);
+    QRandomGenerator rand;
     // Формирование билетов. Гарантируется, что номера не совпадут
     for (int i = 0; i <= n; i++)
     {
         // назначение призов из списка prizes
         bag.at(i).prize = prizes[i];
         // получаем случайный номер в диапазоне от 1 до 20 для билета.
-        int ducketNumber = QRandomGenerator::global()->bounded(1, 20);
+        int ducketNumber = rand.global()->bounded(1, 20);
         // номер билета может совпасть, провеяем это
-        //while(1)
         while(1)
         {
             bool fNumberUsed = false;
@@ -183,35 +245,42 @@ void MainWindow::lottery()
                 break;
             }
             // номер уже присвоен другому билету - получаем новый
-            ducketNumber = QRandomGenerator::global()->bounded(1, 20);
+            ducketNumber = rand.global()->bounded(1, 20);
         }
-        // присваиваем номер билету
+        // присваиваем итоговый номер билету
         bag.at(i).number = ducketNumber;
     }
 
     // Тянем билет
-    int roll = QRandomGenerator::global()->bounded(1, 20);
+    int roll = rand.global()->bounded(1, 20);
     // Начальная позиция - ничего не выиграл
     QString prize = tr("nothing!");
     // Проверяем, есть ли билет с номером roll
     for (auto &it : bag)
     {
         if (roll == it.number)
+        {
             prize = it.prize;
-        // билета нет, значит начальная позиция
+        }
+        // если билета нет, значит начальная позиция
     }
     // Создаём окно с датой и результатами лотереи
     QMessageBox lotBox(this);
     lotBox.setWindowTitle(tr("Lottery"));
     // Устанавливаем текст окна. Вместо %1 метод arg() подставит в строку
-    // текущую дату, а вместо %2 - наименование приза
+    // текущую дату, а вместо %2 наименование приза
     lotBox.setText(tr("Date: %1<br>"
                       "Your prize: %2")
                    .arg(QDate().currentDate().toString())
                    .arg(prize));
     // Добавляем единственную кнопку "выход"
     lotBox.setStandardButtons(QMessageBox::Cancel);
-    lotBox.setDefaultButton(QMessageBox::Cancel);
+    //lotBox.setDefaultButton(QMessageBox::Cancel);
+
+    // QMessageBox не поддерживает изменение размеров. В данном случае не будет видно заголовка окна,
+    // и это зависит от текста в окне. С помощью манипуляций с сеткой окна можно установить минимальный
+    // фиксированный размер - 300 точек
+    reinterpret_cast<QGridLayout *>(lotBox.layout())->setColumnMinimumWidth(1, 300);
     // Отображаем окно
     lotBox.exec();
 }
@@ -237,6 +306,9 @@ void MainWindow::newNotebook()
     emit notebookReady();
     // Сигнализируем о создании записной книжки
     emit notebookCreated();
+    // Сигнализируем, что записная книжка пуста
+    emit notebookEmpty();
+
 }
 
 bool MainWindow::saveNotebook()
@@ -304,6 +376,7 @@ bool MainWindow::openNotebook()
         // Если записная книжка не была закрыта, возвращаем false
         return false;
     }
+
     // Выводим диалог выбора файла для открытия
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Notebook"), QString(), Config::notebookFileNameFilter);
     // Если пользователь не выбрал файл, возвращаем false
@@ -344,6 +417,7 @@ bool MainWindow::openNotebook()
     emit notebookReady();
     // Сигнализируем об открытии записной книжки
     emit notebookOpened(mNotebookFileName);
+
     return true;
 }
 
@@ -411,29 +485,33 @@ bool MainWindow::newNote()
     {
         return false;
     }
+    //bool wasEmpty = !static_cast<bool>(mNotebook->size());
     // Вставляем заметку в записную книжку
     mNotebook->insert(note);
+    //if (wasEmpty) emit notebookNotEmpty();
     return true;
 }
 
 void MainWindow::editNote(QModelIndex idx)
 {
+    // Проверяем, что выделена одна заметка. Если нет, то выдаём ошибку и выходим.
+    if (mUi->notesView->selectionModel()->selectedRows().size() != 1) {
+        QMessageBox::warning(this, tr("Error"), tr("Unable to edit several notes"),QMessageBox::Ok);
+        return;
+    }
     // Создаём диалог редактирования заметки
     EditNoteDialog editDlg(this);
     // Устанавливаем заголовок окна редактирования
     editDlg.setWindowTitle(tr("Note Editor"));
-    // Передаём указатель на заметку, связанную с idx
-    editDlg.setNote(const_cast<Note *>(&mNotebook->operator[]((idx.row()))));
-    // В поле "текст заметки" окна редактирования загружаем имеющийся текст заметки
-    editDlg.setEditNoteText();
-    // В поле "название заметки" окна редактирования загружаем название
-    editDlg.setEditNoteTitle();
-    // запускаем отображение окна и обрабатываем результат "отмена"
-    if (editDlg.exec() == EditNoteDialog::Accepted)
+    // Передаём указатель на заметку, связанную с idx, и заполняем поля окна редактирования
+    // в соответствии с данными заметки
+    editDlg.setNoteForEdit(const_cast<Note *>(&mNotebook->operator[]((idx.row()))));
+    // Запускаем отображение окна и обрабатываем результат "отмена"
+    if (editDlg.exec() != EditNoteDialog::Accepted)
     {
         return;
     }
-    // сообщаем о изменении данных
+    // Сообщаем о изменении таблицы данных
     mNotebook->dataChanged(idx, idx);
 }
 
@@ -453,38 +531,37 @@ void MainWindow::deleteNotes()
 
     // Cтрока, содержащая названия заметок для удаления (выделенных заметок)
     // будет отображена в окне подтверждения удаления заметок.
-    QString note_to_remove;
+    QString rmNote;
     for (const auto &it : rows)
     {
         // если выбрана одна заметка
         if (rows.size() == 1)
         {
-            note_to_remove = mNotebook->operator[](it).title();
+            rmNote = mNotebook->operator[](it).title();
         }
         // если выбрано несколько
         else
         {
-           note_to_remove.append(tr("<style>"
-                                        "p{"
-                                        "margin-left: 20px;"
-                                        "}</style>"
-                                    "<p>• ") + mNotebook->operator[](it).title());
+           rmNote.append(tr("<br>• ") + mNotebook->operator[](it).title());
         }
     }
     int ret = QMessageBox::question(this, Config::applicationName,
                           tr("Do you really want to remove the") + (
-                             (rows.size() == 1) ? tr(" following notes ") : tr(" ")) +
+                             (rows.size() != 1) ? tr(" following notes<br>") : tr(" ")) +
                           tr("<i><b>%1<b><i>")
-                                        .arg(note_to_remove),
+                                        .arg(rmNote),
                           QMessageBox::Yes | QMessageBox::No);
-    // Если NO, удалять не нужно.
+    // Если No, удалять не нужно.
     if (ret == QMessageBox::No) return;
 
+    //bool wasSizeOne = (mNotebook->size()==1) ? true : false;
     for (auto it = rows.rbegin(); it != rows.rend(); ++it)
     {
         // Удаляем строку
         mNotebook->erase(*it);
     }
+    //if (wasSizeOne) emit notebookEmpty();
+
 }
 
 void MainWindow::refreshWindowTitle()
@@ -513,11 +590,6 @@ void MainWindow::refreshWindowTitle()
  */
 void MainWindow::saveNotebookToFile(QString fileName, saveMode mode)
 {
-    // Если записная книжка не открыта, прерываем операцию
-    if (!isNotebookOpen())
-    {
-        return;
-    }
     // Блок обработки исключительных ситуаций
     try
     {
