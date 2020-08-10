@@ -466,7 +466,7 @@
   </connection>
   <connection>
    <sender>notesView</sender>
-   <signal>doubleClicked(QModelIndex)</signal>
+   <signal>activated(QModelIndex)</signal>
    <receiver>MainWindow</receiver>
    <slot>editNote(QModelIndex)</slot>
    <hints>

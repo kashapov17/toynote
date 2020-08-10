@@ -26,8 +26,6 @@
 #include <QUrl>
 #include <QRandomGenerator> // bounded()
 #include <QDate> // currentDate()
-#include <QString>
-#include <QDebug>
 
 #include "config.hpp"
 #include "editnotedialog.hpp"
@@ -127,11 +125,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::disableDeleteAction()
 {
-    mUi->actionDelete_Notes->setEnabled(mUi->notesView->selectionModel()->hasSelection());
+    // отключаем кнопку "удалить заметку", если нет выделенных заметок
+    mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()->hasSelection());
 }
 
 void MainWindow::reconnectWithNewModel()
 {
+    // при изменении области выделения в таблице заметок вызываем слот, отключающий кнопку удаления,
+    // если нет выделенных заметок
     connect(mUi->notesView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &MainWindow::disableDeleteAction);
     disableDeleteAction();
@@ -174,7 +175,7 @@ void MainWindow::displayAbout()
         "Author: <a href=\"mailto:kpushkarev@sfu-kras.ru\">Kirill Pushkaryov</a>, 2019.<br>"
         "Edited in 2020 by <a href=\"mailto:y-kashapov@inbox.ru\">"
         "Yaroslav Kashapov Fanizovich</a>,<br>КИ19-07б, 031939609.<br>"
-        "Home repo: <a href=\"https://github.com/kashapovd/toynote\">github</a><br>"
+        "Sourses: <a href=\"https://github.com/kashapovd/toynote\">github</a><br>"
         "License: LGPLv3.<br>"
         "This application is dynamically linked against the "
         "<a href=\"https://www.qt.io/developers/\">Qt Library</a> "
@@ -199,16 +200,16 @@ void MainWindow::lottery()
     // Список призов
     QString prizes[] =
     {
-        "Notepad",
-        "Chinese Arduino Nano",
-        "USB flash drive 64GB",
-        "Original Arduino Uno",
-        "RaspberryPi 4 8GB",
-        "Librem 5",
-        "Ultabook with 10-gen i7",
-        "Metcal soldering station",
-        "Brand new RTX 3080Ti",
-        "Pass to IKIT"
+        tr("Notepad"),
+        tr("Chinese Arduino Nano"),
+        tr("USB flash drive 64GB"),
+        tr("Original Arduino Uno"),
+        tr("RaspberryPi 4 8GB"),
+        tr("Librem 5"),
+        tr("Ultabook with 10-gen i7"),
+        tr("Metcal soldering station"),
+        tr("Brand new RTX 3080Ti"),
+        tr("Pass to IKIT")
     };
     // Каждый билет содержит его номер и наименование приза
     struct ducket
@@ -234,6 +235,7 @@ void MainWindow::lottery()
             bool fNumberUsed = false;
             for (int j = i; j >= 0; j--)
             {
+                // номер уже использован
                 if (bag.at(j).number == ducketNumber)
                 {
                     fNumberUsed = true;
@@ -278,7 +280,7 @@ void MainWindow::lottery()
     //lotBox.setDefaultButton(QMessageBox::Cancel);
 
     // QMessageBox не поддерживает изменение размеров. В данном случае не будет видно заголовка окна,
-    // и это зависит от текста в окне. С помощью манипуляций с сеткой окна можно установить минимальный
+    // и это зависит от текста в нём. С помощью манипуляций с сеткой окна можно установить минимальный
     // фиксированный размер - 300 точек
     reinterpret_cast<QGridLayout *>(lotBox.layout())->setColumnMinimumWidth(1, 300);
     // Отображаем окно
@@ -306,19 +308,10 @@ void MainWindow::newNotebook()
     emit notebookReady();
     // Сигнализируем о создании записной книжки
     emit notebookCreated();
-    // Сигнализируем, что записная книжка пуста
-    emit notebookEmpty();
-
 }
 
 bool MainWindow::saveNotebook()
 {
-    // Если записная книжка не открыта, выдаём сообщение об этом
-    if (!isNotebookOpen())
-    {
-        QMessageBox::warning(this, Config::applicationName, tr("No open notebooks"));
-        return false;
-    }
     // Если для текущей записной книжки не установлено имя файла...
     if (mNotebookFileName.isEmpty())
     {
@@ -339,12 +332,6 @@ bool MainWindow::saveNotebook()
 
 bool MainWindow::saveNotebookAs(saveMode mode)
 {
-    // Если записная книжка не открыта, выдаём сообщение об этом
-    if (!isNotebookOpen())
-    {
-        QMessageBox::warning(this, Config::applicationName, tr("No open notebooks"));
-        return false;
-    }
     // Выводим диалог выбора файла для сохранения
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Notebook As"), QString(), Config::notebookFileNameFilter);
     // Если пользователь не выбрал файл, возвращаем false
@@ -417,7 +404,6 @@ bool MainWindow::openNotebook()
     emit notebookReady();
     // Сигнализируем об открытии записной книжки
     emit notebookOpened(mNotebookFileName);
-
     return true;
 }
 
@@ -436,7 +422,7 @@ bool MainWindow::closeNotebook()
     saveQuery.setWindowTitle(Config::applicationName);
     // Устанавливаем текст вопроса. Вместо %1 метод arg() подставит в строку
     // результат notebookName() (название документа)
-    saveQuery.setText(tr("Would you like to save %1?").arg(notebookName()));
+    saveQuery.setText(tr("Would you like to save <i><b>%1<b><i>?").arg(notebookName()));
     // Добавляем в окно стандартные кнопки: сохранить, не сохранять и отменить
     saveQuery.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
     // Выбираем кнопку по умолчанию — сохранить
@@ -467,12 +453,6 @@ bool MainWindow::closeNotebook()
 
 bool MainWindow::newNote()
 {
-    // Если записная книжка не открыта, выдаём сообщение об этом
-    if (!isNotebookOpen())
-    {
-        QMessageBox::warning(this, Config::applicationName, tr("No open notebooks"));
-        return false;
-    }
     // Создаём диалог редактирования заметки
     EditNoteDialog noteDlg(this);
     // Устанавливаем заголовок noteDlg
@@ -485,10 +465,8 @@ bool MainWindow::newNote()
     {
         return false;
     }
-    //bool wasEmpty = !static_cast<bool>(mNotebook->size());
     // Вставляем заметку в записную книжку
     mNotebook->insert(note);
-    //if (wasEmpty) emit notebookNotEmpty();
     return true;
 }
 
@@ -505,7 +483,7 @@ void MainWindow::editNote(QModelIndex idx)
     editDlg.setWindowTitle(tr("Note Editor"));
     // Передаём указатель на заметку, связанную с idx, и заполняем поля окна редактирования
     // в соответствии с данными заметки
-    editDlg.setNoteForEdit(const_cast<Note *>(&mNotebook->operator[]((idx.row()))));
+    editDlg.setNoteForEdit(const_cast<Note *>(&(*mNotebook)[idx.row()]));
     // Запускаем отображение окна и обрабатываем результат "отмена"
     if (editDlg.exec() != EditNoteDialog::Accepted)
     {
@@ -537,31 +515,28 @@ void MainWindow::deleteNotes()
         // если выбрана одна заметка
         if (rows.size() == 1)
         {
-            rmNote = mNotebook->operator[](it).title();
+            rmNote = (*mNotebook)[it].title();
         }
         // если выбрано несколько
         else
         {
-           rmNote.append(tr("<br>• ") + mNotebook->operator[](it).title());
+           rmNote.append(tr("<br>• ") + (*mNotebook)[it].title());
         }
     }
     int ret = QMessageBox::question(this, Config::applicationName,
                           tr("Do you really want to remove the") + (
-                             (rows.size() != 1) ? tr(" following notes<br>") : tr(" ")) +
+                             (rows.size() != 1) ? tr(" following notes:<br>") : tr(" ")) +
                           tr("<i><b>%1<b><i>")
                                         .arg(rmNote),
                           QMessageBox::Yes | QMessageBox::No);
     // Если No, удалять не нужно.
     if (ret == QMessageBox::No) return;
 
-    //bool wasSizeOne = (mNotebook->size()==1) ? true : false;
     for (auto it = rows.rbegin(); it != rows.rend(); ++it)
     {
         // Удаляем строку
         mNotebook->erase(*it);
     }
-    //if (wasSizeOne) emit notebookEmpty();
-
 }
 
 void MainWindow::refreshWindowTitle()
@@ -613,7 +588,7 @@ void MainWindow::saveNotebookToFile(QString fileName, saveMode mode)
                 // выводим номер записи и количество записей в текущей записной книжке
                 ost << tr("+++ %1/%2 +++\n").arg(i+1).arg(mNotebook->size());
                 // выводим заголовок и текст записи
-                ost << tr("Title: %1\n").arg(mNotebook->operator[](i).title()) << mNotebook->operator[](i).text();
+                ost << tr("Title: %1\n").arg((*mNotebook)[i].title()) << (*mNotebook)[i].text();
                 ost << tr("\n--- %1/%2 ---\n").arg(i+1).arg(mNotebook->size());
                 ost << tr("\n");
             }

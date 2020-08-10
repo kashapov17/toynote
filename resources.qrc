@@ -11,5 +11,6 @@
         <file>icons/about.svg</file>
         <file>icons/appicon.svg</file>
         <file>icons/lottery.svg</file>
+        <file>toynote_ru.qm</file>
     </qresource>
 </RCC>

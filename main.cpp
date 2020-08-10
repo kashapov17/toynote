@@ -9,7 +9,11 @@
  * @date 2020
  */
 #include "mainwindow.hpp"
+
 #include <QApplication>
+#include <QTranslator>
+#include <QLocale>
+#include <QDebug>
 
 /**
  * @brief Главная функция программы
@@ -19,15 +23,28 @@
  */
 int main(int argc, char *argv[])
 {
-    // Создать объект класса QApplication. Класс QApplication является частью
+    // Создаём объект класса QApplication. Класс QApplication является частью
     // библиотеки Qt и отвечает за функционирование программы в целом
     QApplication app(argc, argv);
-    // Создать объект класса MainWindow. Класс MainWindow является частью
+
+    // Создаём объект класса QTranslator. Для перевода программы на другие языки
+    QTranslator translator;
+    // Определяем основной язык операционной системы
+    QString locale = QLocale::system().name();
+
+    bool loaded = false;
+    loaded = translator.load(":/toynote_" + locale);
+    if (!loaded)
+        // если перевод не был загружен, генерируем передупреждение
+        qWarning() << QString("Can't load %1 translation").arg(locale);
+    else app.installTranslator(&translator);
+
+    // Создаём объект класса MainWindow. Класс MainWindow является частью
     // данной программы и отвечает за функционирование её главного окна
     MainWindow window;
-    // Отобразить главное окно
+    // Отображаем главное окно
     window.show();
 
-    // Начать обработку событий (щелчков мыши по элементам интерфейса и т. д.)
+    // Начинаем обработку событий (щелчков мыши по элементам интерфейса и т. д.)
     return app.exec();
 }

@@ -14,7 +14,6 @@
 #include <memory> // unique_ptr
 
 #include <QMainWindow>
-#include <QItemSelectionModel>
 
 #include "notebook.hpp"
 
@@ -158,10 +157,6 @@ signals:
     void notebookSaved();
     /// Сигнализирует, что записная книжка успешно закрыта.
     void notebookClosed();
-    /// Сигнализирует, что записная книжка пуста
-    void notebookEmpty();
-    /// Сигнализирует, что записная книжка не пуста
-    void notebookNotEmpty();
     /*
      * В этом разделе перечисляются закрытые члены класса, которые обеспечивают
      * его работу и недоступны извне.
