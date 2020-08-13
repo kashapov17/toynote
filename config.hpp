@@ -24,7 +24,7 @@ namespace Config
 const char applicationName[] = QT_TRANSLATE_NOOP("Config", "Toynote");
 
 /// Версия приложения
-const char applicationVersion[] = "20200811";
+const char applicationVersion[] = "20200813";
 
 /**
  * @brief Фильтр для имён файлов записных книжек.

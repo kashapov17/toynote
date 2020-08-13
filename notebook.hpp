@@ -12,10 +12,10 @@
 #define NOTEBOOK_HPP
 
 #include <cstddef> // size_t
-#include <vector>
 
 #include <QAbstractTableModel>
 #include <QDataStream>
+#include <QVector>
 
 #include "note.hpp"
 
@@ -109,7 +109,7 @@ public:
     void erase(SizeType idx);
 private:
     /// Внутренний контейнер для хранения заметок записной книжки.
-    std::vector<Note> mNotes;
+    QVector<Note> mNotes;
 };
 
 /**

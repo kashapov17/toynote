@@ -30,13 +30,14 @@ int main(int argc, char *argv[])
     // Создаём объект класса QTranslator. Для перевода программы на другие языки
     QTranslator translator;
     // Определяем основной язык операционной системы
-    QString locale = QLocale::system().name();
+    QLocale locale = QLocale::system();
 
     bool loaded = false;
-    loaded = translator.load(":/toynote_" + locale);
+    loaded = translator.load(":/toynote_" + locale.name());
     if (!loaded)
-        // если перевод не был загружен, генерируем передупреждение
-        qWarning() << QString("Can't load %1 translation").arg(locale);
+        // если перевод не был загружен, сообщаем об ошибке.
+        // будет функционировать стандартный язык, описанный в программе
+        qWarning() << QString("Can't load %1 translation").arg(locale.name());
     else app.installTranslator(&translator);
 
     // Создаём объект класса MainWindow. Класс MainWindow является частью

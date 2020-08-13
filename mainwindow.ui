@@ -36,11 +36,32 @@
         <height>0</height>
        </size>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
+      </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::DashLine</enum>
       </property>
      </widget>
     </item>
@@ -62,7 +83,7 @@
      <x>0</x>
      <y>0</y>
      <width>409</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
