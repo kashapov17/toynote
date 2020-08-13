@@ -1,2 +1,2 @@
 # toynote
-academic practical
+no more info
