@@ -35,39 +35,39 @@
         <translation>Т&amp;екст:</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="80"/>
-        <location filename="editnotedialog.cpp" line="88"/>
-        <location filename="editnotedialog.cpp" line="96"/>
+        <location filename="editnotedialog.cpp" line="81"/>
+        <location filename="editnotedialog.cpp" line="89"/>
+        <location filename="editnotedialog.cpp" line="97"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="81"/>
+        <location filename="editnotedialog.cpp" line="82"/>
         <source>Unable to create the note with empty title and body</source>
         <translation>Невозможно создать пустую заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="82"/>
+        <location filename="editnotedialog.cpp" line="83"/>
         <source>Unable to save the note with empty title and body</source>
         <translation>Невозможно сохранить пустую заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="89"/>
+        <location filename="editnotedialog.cpp" line="90"/>
         <source>Unable to create the note with empty title</source>
         <translation>Невозможно создать заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="90"/>
+        <location filename="editnotedialog.cpp" line="91"/>
         <source>Unable to save the note with empty title</source>
         <translation>Невозможно сохранить заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="97"/>
+        <location filename="editnotedialog.cpp" line="98"/>
         <source>Unable to create the note with empty body</source>
         <translation>Невозможно создать пустую заметку</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="98"/>
+        <location filename="editnotedialog.cpp" line="99"/>
         <source>Unable to save the note with empty body</source>
         <translation>Невозможно сохранить пустую заметку</translation>
     </message>
@@ -96,168 +96,173 @@
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="114"/>
+        <location filename="mainwindow.ui" line="115"/>
         <source>&amp;Edit</source>
         <translation>&amp;Редактировать</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="148"/>
+        <location filename="mainwindow.ui" line="149"/>
         <source>&amp;New Notebook</source>
         <translation>&amp;Создать книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="151"/>
+        <location filename="mainwindow.ui" line="152"/>
         <source>Create a new notebook</source>
         <translation>Создать записную книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="154"/>
+        <location filename="mainwindow.ui" line="155"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="166"/>
-        <location filename="mainwindow.cpp" line="378"/>
+        <location filename="mainwindow.ui" line="167"/>
+        <location filename="mainwindow.cpp" line="383"/>
         <source>New Note</source>
         <translation>Создать</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="169"/>
+        <location filename="mainwindow.ui" line="170"/>
         <source>Add a new note</source>
         <translation>Добавить новую заметку</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="178"/>
+        <location filename="mainwindow.ui" line="179"/>
         <source>Delete Notes</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="181"/>
+        <location filename="mainwindow.ui" line="182"/>
         <source>Delete the selected note(s)</source>
         <translation>Удалить выбранную заметку/заметки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="190"/>
+        <location filename="mainwindow.ui" line="191"/>
         <source>&amp;About Toynote</source>
         <translation>О &amp;программе</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="193"/>
+        <location filename="mainwindow.ui" line="194"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="202"/>
+        <location filename="mainwindow.ui" line="203"/>
         <source>&amp;Save</source>
         <translation>Со&amp;хранить книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="205"/>
+        <location filename="mainwindow.ui" line="206"/>
         <source>Save the notebook</source>
         <translation>Сохранить записную книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="208"/>
+        <location filename="mainwindow.ui" line="209"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="217"/>
+        <location filename="mainwindow.ui" line="218"/>
         <source>&amp;Open Notebook</source>
         <translation>&amp;Открыть книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="220"/>
+        <location filename="mainwindow.ui" line="221"/>
         <source>Open a notebook</source>
         <translation>Открыть книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="223"/>
+        <location filename="mainwindow.ui" line="224"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="228"/>
+        <location filename="mainwindow.ui" line="229"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="231"/>
+        <location filename="mainwindow.ui" line="232"/>
         <source>Close the notebook</source>
         <translation>Закрыть записную книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="235"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="243"/>
+        <location filename="mainwindow.ui" line="244"/>
         <source>Sa&amp;ve As</source>
         <translation>Сох&amp;ранить как</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="246"/>
+        <location filename="mainwindow.ui" line="247"/>
         <source>Save the notebook to a chosen file</source>
         <translation>Сохранить в файл</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="249"/>
+        <location filename="mainwindow.ui" line="250"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="258"/>
+        <location filename="mainwindow.ui" line="259"/>
         <source>Save As &amp;Text</source>
         <translation>Сохранить в &amp;текстовом формате</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="261"/>
+        <location filename="mainwindow.ui" line="262"/>
         <source>Save the notebook as text</source>
         <translation>Сохранить записную книгу в текстовом формате</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="265"/>
         <source>Ctrl+Alt+S</source>
         <translation>Ctrl+Alt+S</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="273"/>
+        <location filename="mainwindow.ui" line="274"/>
         <source>&amp;Visit eCourses</source>
         <translation>&amp;Посетить e-курсы</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="276"/>
+        <location filename="mainwindow.ui" line="277"/>
         <source>Open the eCourses web page</source>
         <translation>Открыть e-курсы</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="280"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="288"/>
+        <location filename="mainwindow.ui" line="289"/>
         <source>&amp;Exit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="291"/>
+        <location filename="mainwindow.ui" line="292"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="300"/>
+        <location filename="mainwindow.ui" line="301"/>
         <source>&amp;Lottery</source>
         <translation>&amp;Лотерея</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="303"/>
+        <location filename="mainwindow.ui" line="304"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="155"/>
+        <location filename="mainwindow.ui" line="313"/>
+        <source>About Qt</source>
+        <translation>О Qt</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="160"/>
         <source>About %1</source>
         <translation>О программе %1</translation>
     </message>
@@ -266,9 +271,9 @@
         <translation type="vanished">%1 %2&lt;br&gt;Автор: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Кирилл Пушкарёв&lt;/a&gt;, 2019.&lt;br&gt;Изменил в 2020 году &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Кашапов Ярослав Фанизович&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Сорцы: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;гитхаб&lt;/a&gt;&lt;br&gt;Лицензия: LGPLv3.&lt;br&gt;Данное приложение скомпоновано динамически с &lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;библиотекой Qt&lt;/a&gt; , версия %3.&lt;br&gt;Использованные иконки: &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="159"/>
-        <source>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: WTFPL.&lt;br&gt;This application is dynamically linked against the &lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</source>
-        <oldsource>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: GPLv3.&lt;br&gt;This application is dynamically linked against the &lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</oldsource>
+        <location filename="mainwindow.cpp" line="164"/>
+        <source>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: WTFPL.&lt;br&gt;This application is dynamically linked against the&lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</source>
+        <oldsource>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: WTFPL.&lt;br&gt;This application is dynamically linked against the &lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</oldsource>
         <translation>%1 %2&lt;br&gt;Автор: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Кирилл Пушкарёв&lt;/a&gt;, 2019.&lt;br&gt;Изменил в 2020 году &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Кашапов Ярослав Фанизович&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Сорцы: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;гитхаб&lt;/a&gt;&lt;br&gt;Лицензия: WTFPL.&lt;br&gt;Данное приложение скомпоновано динамически с &lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;библиотекой Qt&lt;/a&gt; , версия %3.&lt;br&gt;Использованные иконки: &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</translation>
     </message>
     <message>
@@ -319,23 +324,23 @@
         <translation type="vanished">ни-че-го!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="190"/>
+        <location filename="mainwindow.cpp" line="195"/>
         <source>Lottery</source>
         <translation>Лотерея</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="193"/>
+        <location filename="mainwindow.cpp" line="198"/>
         <source>Date: %1&lt;br&gt;Your prize: %2</source>
         <translation>Дата: %1&lt;br&gt;Выигрыш: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="447"/>
+        <location filename="mainwindow.cpp" line="452"/>
         <source>Do you really want to remove the following notes:&lt;br&gt;&lt;i&gt;%1&lt;i&gt;</source>
         <oldsource>Do you really want to remove the following notes:&lt;br&gt;&lt;i&gt;&lt;b&gt;%1&lt;b&gt;&lt;i&gt;</oldsource>
         <translation>Действительно удалить эти заметки:&lt;br&gt;&lt;i&gt;%1&lt;i&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="454"/>
         <source>Do you really want to remove the &lt;i&gt;%1&lt;i&gt;?</source>
         <oldsource>Do you really want to remove the &lt;i&gt;&lt;b&gt;%1&lt;i&gt;&lt;b&gt;?</oldsource>
         <translation>Действительно удалить &lt;i&gt;%1&lt;i&gt;?</translation>
@@ -345,46 +350,48 @@
         <translation type="vanished">Нет открытых записных книг</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="255"/>
+        <location filename="mainwindow.cpp" line="260"/>
         <source>Save Notebook As</source>
         <translation>Сохранить записную книгу как</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="287"/>
+        <location filename="mainwindow.cpp" line="292"/>
         <source>Open Notebook</source>
         <translation>Открыть книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="302"/>
+        <location filename="mainwindow.cpp" line="307"/>
         <source>open(): </source>
         <translation>открыть(): </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="317"/>
+        <location filename="mainwindow.cpp" line="322"/>
         <source>Unable to open the file %1: %2</source>
         <translation>Невозможно открыть файл %1: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="344"/>
+        <location filename="mainwindow.cpp" line="349"/>
         <source>Would you like to save &lt;i&gt;%1&lt;i&gt;?</source>
         <oldsource>Would you like to save &lt;i&gt;&lt;b&gt;%1&lt;b&gt;&lt;i&gt;?</oldsource>
         <translation>Сохранить &lt;i&gt;%1&lt;i&gt;?</translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="401"/>
         <source>Error</source>
-        <translation type="vanished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
+        <location filename="mainwindow.cpp" line="401"/>
         <source>Unable to edit several notes</source>
-        <translation type="vanished">Невозможно редактировать несколько заметок сразу</translation>
+        <translation>Невозможно редактировать несколько заметок сразу</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="402"/>
+        <location filename="mainwindow.cpp" line="407"/>
         <source>Note Editor</source>
         <translation>Редактор заметок</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="443"/>
+        <location filename="mainwindow.cpp" line="448"/>
         <source>&lt;br&gt;• </source>
         <translation>&lt;br&gt;• </translation>
     </message>
@@ -409,26 +416,26 @@
         <translation type="vanished">&lt;i&gt;&lt;b&gt;%1&lt;b&gt;&lt;i&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="472"/>
+        <location filename="mainwindow.cpp" line="477"/>
         <source>%1 - %2[*]</source>
         <translation>%1 - %2[*]</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="509"/>
+        <location filename="mainwindow.cpp" line="514"/>
         <source>+++ %1/%2 +++
 </source>
         <translation>+++ %1/%2 +++
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="511"/>
+        <location filename="mainwindow.cpp" line="516"/>
         <source>Title: %1
 </source>
         <translation>Заголовок: %1
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="512"/>
+        <location filename="mainwindow.cpp" line="517"/>
         <source>
 --- %1/%2 ---
 </source>
@@ -437,23 +444,23 @@
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="513"/>
+        <location filename="mainwindow.cpp" line="518"/>
         <source>
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="531"/>
+        <location filename="mainwindow.cpp" line="536"/>
         <source>Unable to commit the save</source>
         <translation>Не удалось сохранить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="540"/>
+        <location filename="mainwindow.cpp" line="545"/>
         <source>Unable to write to the file %1: %2</source>
         <translation>Невозсожно записать в файл %1: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="569"/>
+        <location filename="mainwindow.cpp" line="574"/>
         <source>Untitled</source>
         <translation>Без названия</translation>
     </message>
