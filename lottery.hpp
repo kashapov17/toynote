@@ -8,11 +8,11 @@
 #define LOTTERY_HPP
 
 #include <QString>
-#include <QObject>
+#include <QObject> // tr()
 
 class lottery : QObject
 {
-    Q_OBJECT // tr()
+    Q_OBJECT
 
 public:
     lottery();

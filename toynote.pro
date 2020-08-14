@@ -13,6 +13,8 @@ TEMPLATE     =  app
 
 TRANSLATIONS =  toynote_ru.ts
 
+DEFINES     +=  QT_DEPRECATED_WARNINGS
+
 SOURCES     +=  main.cpp \
                 lottery.cpp \
                 mainwindow.cpp \

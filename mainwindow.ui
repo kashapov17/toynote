@@ -83,7 +83,7 @@
      <x>0</x>
      <y>0</y>
      <width>409</width>
-     <height>20</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -106,6 +106,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
     <addaction name="actionVisit_eCourses"/>
     <addaction name="actionLottery"/>
    </widget>
@@ -301,6 +302,15 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/qt.svg</normaloff>:/icons/qt.svg</iconset>
+   </property>
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>
@@ -533,6 +543,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAbout_Qt</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>aboutqt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>204</x>
+     <y>152</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>displayAbout()</slot>
@@ -549,5 +575,6 @@
   <slot>saveNotebookAs()</slot>
   <slot>editNote(QModelIndex)</slot>
   <slot>disableNoteList(bool)</slot>
+  <slot>aboutqt()</slot>
  </slots>
 </ui>

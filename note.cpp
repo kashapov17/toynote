@@ -47,4 +47,3 @@ void Note::load(QDataStream &ist)
 {
     ist >> mTitle >> mText;
 }
-

@@ -61,10 +61,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, &MainWindow::notebookCreated, [this] { setWindowModified(true); });
 
     // Действия, связанные с закрытием записной книжки
-    connect(this, &MainWindow::notebookClosed, [this] { disableSomeActions(true);});
+    connect(this, &MainWindow::notebookClosed, [this] { disableUIActions(true);});
     // Действия, связанные с готовностью записной книжки.
     // Протовоположны действиям, связанным с закрытием записной книжки
-    connect(this, &MainWindow::notebookReady, [this] { disableSomeActions(false);});
+    connect(this, &MainWindow::notebookReady, [this] { disableUIActions(false);});
 
     // Для корректной работы selectionChange при открытии новых записных книжек,
     // привязываем каждый раз новый selectionModel
@@ -92,15 +92,14 @@ MainWindow::~MainWindow()
 void MainWindow::disableDeleteAction()
 {
     // отключаем кнопку "удалить заметку", если нет выделенных заметок
-    mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()->hasSelection());
+    mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()
+                                         ->hasSelection());
 }
 
-void MainWindow::disableSomeActions(bool dis)
+void MainWindow::disableUIActions(bool dis)
 {
     // Отключаем возможность создания заметок через меню-бар
     mUi->actionNew_Note->setDisabled(dis);
-    // Отключаем возможность удаления заметок через меню-бар
-    mUi->actionDelete_Notes->setDisabled(dis);
     // Отключаем возможность отключения вида таблицы заметок
     mUi->checkBox->setDisabled(dis);
     // Отключаем отображение таблицы заметок
@@ -113,6 +112,8 @@ void MainWindow::disableSomeActions(bool dis)
     mUi->actionSave_As_Text->setDisabled(dis);
     // Отключаем возможность закрывать записную книжку
     mUi->actionCloseNotebook->setDisabled(dis);
+    // Отключаем возможность удалять заметки по умолчанию
+    mUi->actionDelete_Notes->setDisabled(true);
 }
 
 void MainWindow::reconnectWithNewModel()
@@ -121,12 +122,16 @@ void MainWindow::reconnectWithNewModel()
     // если нет выделенных заметок
     connect(mUi->notesView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &MainWindow::disableDeleteAction);
-    disableDeleteAction();
 }
 
 void MainWindow::disableNoteList(bool cond)
 {
     mUi->notesView->setDisabled(cond);
+}
+
+void MainWindow::aboutqt()
+{
+    QMessageBox::aboutQt(this);
 }
 
 void MainWindow::displayAbout()
@@ -162,7 +167,7 @@ void MainWindow::displayAbout()
         "Yaroslav Kashapov Fanizovich</a>,<br>КИ19-07б, 031939609.<br>"
         "Sourses: <a href=\"https://github.com/kashapovd/toynote\">github</a><br>"
         "License: WTFPL.<br>"
-        "This application is dynamically linked against the "
+        "This application is dynamically linked against the<br>"
         "<a href=\"https://www.qt.io/developers/\">Qt Library</a> "
         "v. %3.<br>"
         "Icons by the <a href=\"http://tango.freedesktop.org/"
@@ -192,7 +197,7 @@ void MainWindow::lottery()
     // текущую дату, а вместо %2 наименование приза
     lotBox.setText(tr("Date: %1<br>"
                       "Your prize: %2")
-                   .arg(QDate().currentDate().toString())
+                   .arg(QDate().currentDate().toString(Qt::ISODate))
                    .arg(prize));
     // Добавляем единственную кнопку "выход"
     lotBox.setStandardButtons(QMessageBox::Cancel);
@@ -391,11 +396,11 @@ bool MainWindow::newNote()
 
 void MainWindow::editNote(QModelIndex idx)
 {
-//    // Проверяем, что выделена одна заметка. Если нет, то выдаём ошибку и выходим.
-//    if (mUi->notesView->selectionModel()->selectedRows().size() != 1) {
-//        QMessageBox::warning(this, tr("Error"), tr("Unable to edit several notes"), QMessageBox::Ok);
-//        return;
-//    }
+    // Проверяем, что выделена одна заметка. Если нет, то выдаём ошибку и выходим.
+    if (mUi->notesView->selectionModel()->selectedRows().size() != 1) {
+        QMessageBox::warning(this, tr("Error"), tr("Unable to edit several notes"), QMessageBox::Ok);
+        return;
+    }
     // Создаём диалог редактирования заметки
     EditNoteDialog editDlg(this);
     // Устанавливаем заголовок окна редактирования
@@ -577,14 +582,14 @@ void MainWindow::createNotebook()
     setNotebook(new Notebook);
 }
 
-void MainWindow::setNotebook(Notebook *notebook)
+void MainWindow::setNotebook(Notebook *nb)
 {
     /*
      * Заменяем имеющийся указатель на объект записной книжки новым.
      * Если в mNotebook хранился какой-то ненулевой указатель на объект,
      * то метод reset() удалит его автоматически
      */
-    mNotebook.reset(notebook);
+    mNotebook.reset(nb);
     // Связываем новый объект записной книжки с таблицей заметок в главном окне
     mUi->notesView->setModel(mNotebook.get());
 }

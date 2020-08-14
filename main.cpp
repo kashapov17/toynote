@@ -15,6 +15,7 @@
 #include <QLocale>
 #include <QDebug>
 
+#include "config.hpp"
 /**
  * @brief Главная функция программы
  * @param argc количество параметров командной строки
@@ -26,18 +27,19 @@ int main(int argc, char *argv[])
     // Создаём объект класса QApplication. Класс QApplication является частью
     // библиотеки Qt и отвечает за функционирование программы в целом
     QApplication app(argc, argv);
+    app.applicationName() = Config::applicationName;
 
     // Создаём объект класса QTranslator. Для перевода программы на другие языки
     QTranslator translator;
     // Определяем основной язык операционной системы
-    QLocale locale = QLocale::system();
+    QString sysLocaleName(QLocale::system().name());
 
     bool loaded = false;
-    loaded = translator.load(":/toynote_" + locale.name());
+    loaded = translator.load(":/toynote_" + sysLocaleName);
     if (!loaded)
         // если перевод не был загружен, сообщаем об ошибке.
         // будет функционировать стандартный язык, описанный в программе
-        qWarning() << QString("Can't load %1 translation").arg(locale.name());
+        qWarning() << QString("Can't load %1 translation").arg(sysLocaleName);
     else app.installTranslator(&translator);
 
     // Создаём объект класса MainWindow. Класс MainWindow является частью

@@ -12,6 +12,7 @@
 #define NOTE_HPP
 
 #include <QDataStream>
+#include <QTextStream>
 #include <QString>
 
 /**
@@ -42,6 +43,7 @@ public:
     void save(QDataStream &ost) const;
     /// Загружает заметку из потока @a ist.
     void load(QDataStream &ist);
+
 private:
     /// Заголовок заметки.
     QString mTitle;

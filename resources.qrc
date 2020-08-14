@@ -9,6 +9,7 @@
         <file>icons/exit.svg</file>
         <file>icons/web.svg</file>
         <file>icons/about.svg</file>
+	<file>icons/qt.svg</file>
         <file>icons/appicon.svg</file>
         <file>icons/lottery.svg</file>
         <file>toynote_ru.qm</file>
