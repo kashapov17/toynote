@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Toynote: Файл config.hpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Toynote
-   &#160;<span id="projectnumber">20191224</span>
    </div>
    <div id="projectbrief">A toy note application</div>
   </td>
@@ -31,18 +30,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Создано системой Doxygen 1.8.13 -->
+<!-- Создано системой Doxygen 1.8.18 -->
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Поиск');
   $(document).ready(function() { init_search(); });
 });
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -74,13 +76,19 @@ $(function() {
 Граф включаемых заголовочных файлов для config.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="config_8hpp__incl.png" border="0" usemap="#config_8hpp" alt=""/></div>
+<map name="config_8hpp" id="config_8hpp">
+<area shape="rect" title="Файл конфигурации." alt="" coords="5,5,95,32"/>
+<area shape="rect" title=" " alt="" coords="11,80,89,107"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 Граф файлов, в которые включается этот файл:</div>
 <div class="dyncontent">
 <div class="center"><img src="config_8hpp__dep__incl.png" border="0" usemap="#config_8hppdep" alt=""/></div>
 <map name="config_8hppdep" id="config_8hppdep">
-<area shape="rect" id="node2" href="mainwindow_8cpp.html" title="Файл реализации класса MainWindow. " alt="" coords="5,80,124,107"/>
+<area shape="rect" title="Файл конфигурации." alt="" coords="67,5,157,32"/>
+<area shape="rect" href="main_8cpp.html" title="Файл главной функции." alt="" coords="5,80,88,107"/>
+<area shape="rect" href="mainwindow_8cpp.html" title="Файл реализации класса MainWindow." alt="" coords="112,80,243,107"/>
 </map>
 </div>
 </div>
@@ -92,7 +100,7 @@ $(function() {
 <tr class="memdesc:a7420d03d5da8d65c53e7324761a88faa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название приложения.  <a href="config_8hpp.html#a7420d03d5da8d65c53e7324761a88faa">Подробнее...</a><br /></td></tr>
 <tr class="separator:a7420d03d5da8d65c53e7324761a88faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d238b52d243ebc8bf1e6fe14155a204"><td class="memItemLeft" align="right" valign="top"><a id="a2d238b52d243ebc8bf1e6fe14155a204"></a>
-const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a2d238b52d243ebc8bf1e6fe14155a204">Config::applicationVersion</a> [] = &quot;20191224&quot;</td></tr>
+const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a2d238b52d243ebc8bf1e6fe14155a204">Config::applicationVersion</a> [] = &quot;20200814&quot;</td></tr>
 <tr class="memdesc:a2d238b52d243ebc8bf1e6fe14155a204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Версия приложения <br /></td></tr>
 <tr class="separator:a2d238b52d243ebc8bf1e6fe14155a204"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b424175c830683c3acd31f33567efa1"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a7b424175c830683c3acd31f33567efa1">Config::notebookFileNameFilter</a> [] = QT_TRANSLATE_NOOP(&quot;Config&quot;, &quot;Notebooks (*.tnb)&quot;)</td></tr>
@@ -102,10 +110,12 @@ const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Файл конфигурации. </p>
 <dl class="section author"><dt>Автор</dt><dd>Кирилл Пушкарёв </dd></dl>
-<dl class="section date"><dt>Дата</dt><dd>2017 </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>2017</dd></dl>
+<dl class="section author"><dt>Автор</dt><dd>Кашапов Ярослав </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>2020 </dd></dl>
 </div><h2 class="groupheader">Переменные</h2>
-<a id="file_a7420d03d5da8d65c53e7324761a88faa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a7420d03d5da8d65c53e7324761a88faa">&#9670;&nbsp;</a></span>applicationName</h2>
+<a id="a7420d03d5da8d65c53e7324761a88faa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7420d03d5da8d65c53e7324761a88faa">&#9670;&nbsp;</a></span>applicationName</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,8 +131,8 @@ const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<a id="file_a7b424175c830683c3acd31f33567efa1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a7b424175c830683c3acd31f33567efa1">&#9670;&nbsp;</a></span>notebookFileNameFilter</h2>
+<a id="a7b424175c830683c3acd31f33567efa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b424175c830683c3acd31f33567efa1">&#9670;&nbsp;</a></span>notebookFileNameFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,7 +154,7 @@ const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <hr class="footer"/><address class="footer"><small>
 Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
+</a> 1.8.18
 </small></address>
 </body>
 </html>
