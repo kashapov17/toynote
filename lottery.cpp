@@ -8,7 +8,7 @@
 
 #include <QRandomGenerator>
 
-lottery::lottery() {}
+lottery::lottery(){}
 
 /**
  * @brief Метод, имитирующий лотерею

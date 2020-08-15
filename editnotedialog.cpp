@@ -15,7 +15,6 @@
 #include <QMessageBox>
 
 #include "note.hpp"
-#include "notebook.hpp"
 
 /**
 * Конструирует объект класса с родительским объектом @a parent.
@@ -111,6 +110,7 @@ void EditNoteDialog::accept()
     // будет считаться подтверждённым и не закроется.
     // Таким образом, в данном случае метод EditNoteDialog::accept() не подменяет
     // собой метод QDialog::accept() совсем, а дополняет его.
+
     // сбрасываем флаг, если он был установлен
     if (notNewNote) notNewNote = false;
     QDialog::accept();

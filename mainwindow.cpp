@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // сигнал MainWindow::notebookCreated будет вызывать код, записанный в
     // фигурных скобках, то есть метод MainWindow::setWindowModified() с параметром true.
     connect(this, &MainWindow::notebookCreated, [this] { setWindowModified(true); });
+    connect(this, &MainWindow::notebookSaved, [this] { setWindowModified(false); });
 
     // Действия, связанные с закрытием записной книжки
     connect(this, &MainWindow::notebookClosed, [this] { disableUIActions(true);});
@@ -66,8 +67,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Протовоположны действиям, связанным с закрытием записной книжки
     connect(this, &MainWindow::notebookReady, [this] { disableUIActions(false);});
 
-    // Для корректной работы selectionChange при открытии новых записных книжек,
-    // привязываем каждый раз новый selectionModel
+    // Для корректной работы при открытии новых записных книжек, то есть при изменении модели,
+    // присоединяем сигналы, специфичные для каждой модели, и слоты
     connect(this, &MainWindow::notebookReady, this, &MainWindow::reconnectWithNewModel);
 
     // Отображаем GUI, сгенерированный из файла mainwindow.ui, в данном окне
@@ -99,21 +100,21 @@ void MainWindow::disableDeleteAction()
 void MainWindow::disableUIActions(bool dis)
 {
     // Отключаем возможность создания заметок через меню-бар
-    mUi->actionNew_Note->setDisabled(dis);
+    mUi->actionNew_Note->     setDisabled(dis);
     // Отключаем возможность отключения вида таблицы заметок
-    mUi->checkBox->setDisabled(dis);
+    mUi->checkBox->           setDisabled(dis);
     // Отключаем отображение таблицы заметок
-    mUi->notesView->setDisabled(dis);
+    mUi->notesView->          setDisabled(dis);
     // Отключаем возможность сохранять книжку в текущий файл
-    mUi->actionSave->setDisabled(dis);
+    mUi->actionSave->         setDisabled(dis);
     // Отключаем возможность сохранять книжку
-    mUi->actionSave_As->setDisabled(dis);
+    mUi->actionSave_As->      setDisabled(dis);
     // Отключаем возможность сохранять книжку в текстовом формате
-    mUi->actionSave_As_Text->setDisabled(dis);
+    mUi->actionSave_As_Text-> setDisabled(dis);
     // Отключаем возможность закрывать записную книжку
     mUi->actionCloseNotebook->setDisabled(dis);
     // Отключаем возможность удалять заметки по умолчанию
-    mUi->actionDelete_Notes->setDisabled(true);
+    mUi->actionDelete_Notes-> setDisabled(true);
 }
 
 void MainWindow::reconnectWithNewModel()
@@ -122,6 +123,9 @@ void MainWindow::reconnectWithNewModel()
     // если нет выделенных заметок
     connect(mUi->notesView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &MainWindow::disableDeleteAction);
+    // при изменении данных в модели ставим [*] в заголовке окна
+    connect(mUi->notesView->model(), &QAbstractItemModel::dataChanged,
+            [this] { setWindowModified(true); });
 }
 
 void MainWindow::disableNoteList(bool cond)
@@ -391,6 +395,8 @@ bool MainWindow::newNote()
     }
     // Вставляем заметку в записную книжку
     mNotebook->insert(note);
+    // Сигнализируем видам о изменении таблицы данных
+    emit mNotebook->dataChanged(QModelIndex(), QModelIndex());
     return true;
 }
 
@@ -413,8 +419,8 @@ void MainWindow::editNote(QModelIndex idx)
     {
         return;
     }
-    // Сообщаем о изменении таблицы данных
-    mNotebook->dataChanged(idx, idx);
+    // Сигнализируем видам о изменении таблицы данных
+    emit mNotebook->dataChanged(idx, idx);
 }
 
 void MainWindow::deleteNotes()
@@ -422,7 +428,6 @@ void MainWindow::deleteNotes()
     // Для хранения номеров строк создаём STL-контейнер "множество", элементы
     // которого автоматически упорядочиваются по возрастанию
     std::set<int> rows;
-    {
         // Получаем от таблицы заметок список индексов выбранных в настоящий момент
         // элементов
         QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
@@ -431,7 +436,6 @@ void MainWindow::deleteNotes()
         {
             rows.insert(i.row());
         }
-    }
     // Cтрока, содержащая названия заметок для удаления (выделенных заметок)
     // будет отображена в окне подтверждения удаления заметок.
     QString rmNote;
@@ -462,6 +466,8 @@ void MainWindow::deleteNotes()
         // Удаляем строку
         mNotebook->erase(*it);
     }
+    // Сигнализируем видам о изменении таблицы данных
+    emit mNotebook->dataChanged(idc.first(), idc.last());
 }
 
 void MainWindow::refreshWindowTitle()
