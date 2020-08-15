@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Toynote: Файл main.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Toynote
-   &#160;<span id="projectnumber">20191224</span>
    </div>
    <div id="projectbrief">A toy note application</div>
   </td>
@@ -31,18 +30,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Создано системой Doxygen 1.8.13 -->
+<!-- Создано системой Doxygen 1.8.18 -->
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Поиск');
   $(document).ready(function() { init_search(); });
 });
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -71,27 +73,48 @@ $(function() {
 <a href="#details">Подробнее...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="mainwindow_8hpp_source.html">mainwindow.hpp</a>&quot;</code><br />
 <code>#include &lt;QApplication&gt;</code><br />
+<code>#include &lt;QTranslator&gt;</code><br />
+<code>#include &lt;QLocale&gt;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
+<code>#include &quot;<a class="el" href="config_8hpp_source.html">config.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#main_8cpp" alt=""/></div>
 <map name="main_8cpp" id="main_8cpp">
-<area shape="rect" id="node2" href="mainwindow_8hpp.html" title="Заголовочный файл класса MainWindow. " alt="" coords="93,80,211,107"/>
-<area shape="rect" id="node5" href="notebook_8hpp.html" title="Заголовочный файл класса Notebook. " alt="" coords="230,155,330,181"/>
-<area shape="rect" id="node10" href="note_8hpp.html" title="Заголовочный файл класса Note. " alt="" coords="429,229,501,256"/>
+<area shape="rect" title="Файл главной функции." alt="" coords="447,5,529,32"/>
+<area shape="rect" href="mainwindow_8hpp.html" title="Заголовочный файл класса MainWindow." alt="" coords="99,80,231,107"/>
+<area shape="rect" title=" " alt="" coords="255,80,361,107"/>
+<area shape="rect" title=" " alt="" coords="385,80,481,107"/>
+<area shape="rect" title=" " alt="" coords="505,80,580,107"/>
+<area shape="rect" title=" " alt="" coords="604,80,679,107"/>
+<area shape="rect" href="config_8hpp.html" title="Файл конфигурации." alt="" coords="703,80,793,107"/>
+<area shape="rect" title=" " alt="" coords="5,155,83,181"/>
+<area shape="rect" title=" " alt="" coords="107,155,223,181"/>
+<area shape="rect" href="notebook_8hpp.html" title="Заголовочный файл класса Notebook." alt="" coords="247,155,358,181"/>
+<area shape="rect" title=" " alt="" coords="10,229,81,256"/>
+<area shape="rect" title=" " alt="" coords="105,229,265,256"/>
+<area shape="rect" title=" " alt="" coords="267,304,378,331"/>
+<area shape="rect" title=" " alt="" coords="341,229,414,256"/>
+<area shape="rect" href="note_8hpp.html" title="Заголовочный файл класса Note." alt="" coords="438,229,517,256"/>
+<area shape="rect" title=" " alt="" coords="413,304,520,331"/>
+<area shape="rect" title=" " alt="" coords="545,304,615,331"/>
+<area shape="rect" title=" " alt="" coords="709,155,787,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
-<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">main  <a href="#a0ddf1224851353fc92bfbff6f499fa97">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Главная функция программы  <a href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">Подробнее...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Файл главной функции. </p>
 <dl class="section author"><dt>Автор</dt><dd>Кирилл Пушкарёв </dd></dl>
-<dl class="section date"><dt>Дата</dt><dd>2017 </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>2017</dd></dl>
+<dl class="section author"><dt>Автор</dt><dd>Кашапов Ярослав </dd></dl>
+<dl class="section date"><dt>Дата</dt><dd>2020 </dd></dl>
 </div><h2 class="groupheader">Функции</h2>
 <a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
@@ -119,7 +142,7 @@ $(function() {
       </table>
 </div><div class="memdoc">
 
-<p>main </p>
+<p>Главная функция программы </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">argc</td><td>количество параметров командной строки </td></tr>
@@ -127,8 +150,7 @@ $(function() {
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>код результата</dd></dl>
-<p>Главная функция программы </p>
+<dl class="section return"><dt>Возвращает</dt><dd>код результата </dd></dl>
 
 </div>
 </div>
@@ -137,7 +159,7 @@ $(function() {
 <hr class="footer"/><address class="footer"><small>
 Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
+</a> 1.8.18
 </small></address>
 </body>
 </html>

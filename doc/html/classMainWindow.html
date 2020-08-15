@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Toynote: Класс MainWindow</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Toynote
-   &#160;<span id="projectnumber">20191224</span>
    </div>
    <div id="projectbrief">A toy note application</div>
   </td>
@@ -31,18 +30,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Создано системой Doxygen 1.8.13 -->
+<!-- Создано системой Doxygen 1.8.18 -->
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Поиск');
   $(document).ready(function() { init_search(); });
 });
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -63,6 +65,7 @@ $(function() {
   <div class="summary">
 <a href="#signals">Сигналы</a> &#124;
 <a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pri-types">Закрытые типы</a> &#124;
 <a href="#pri-slots">Закрытые слоты</a> &#124;
 <a href="#pri-methods">Закрытые члены</a> &#124;
 <a href="#pri-attribs">Закрытые данные</a> &#124;
@@ -80,17 +83,25 @@ $(function() {
 Граф наследования:MainWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMainWindow__inherit__graph.png" border="0" usemap="#MainWindow_inherit__map" alt="Inheritance graph"/></div>
+<map name="MainWindow_inherit__map" id="MainWindow_inherit__map">
+<area shape="rect" title="Класс главного окна программы." alt="" coords="10,80,117,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,121,32"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">см. легенду</a>]</span></center></div>
 <div class="dynheader">
 Граф связей класса MainWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMainWindow__coll__graph.png" border="0" usemap="#MainWindow_coll__map" alt="Collaboration graph"/></div>
+<map name="MainWindow_coll__map" id="MainWindow_coll__map">
+<area shape="rect" title="Класс главного окна программы." alt="" coords="10,80,117,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,121,32"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">см. легенду</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Сигналы</h2></td></tr>
 <tr class="memitem:a4e147f347eb4a7de3b55a059e428f793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a4e147f347eb4a7de3b55a059e428f793">notebookFileNameChanged</a> (QString name)</td></tr>
-<tr class="memdesc:a4e147f347eb4a7de3b55a059e428f793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал об изменении имени открытого файла.  <a href="#a4e147f347eb4a7de3b55a059e428f793">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:a4e147f347eb4a7de3b55a059e428f793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал об изменении имени открытого файла.  <a href="classMainWindow.html#a4e147f347eb4a7de3b55a059e428f793">Подробнее...</a><br /></td></tr>
 <tr class="separator:a4e147f347eb4a7de3b55a059e428f793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab13290eb445281ec41ff6db2eef3bdb7"><td class="memItemLeft" align="right" valign="top"><a id="ab13290eb445281ec41ff6db2eef3bdb7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ab13290eb445281ec41ff6db2eef3bdb7">notebookReady</a> ()</td></tr>
@@ -101,7 +112,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:aebb270f9a4973967506f3d31716d541b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнализирует, что записная книжка успешно создана. <br /></td></tr>
 <tr class="separator:aebb270f9a4973967506f3d31716d541b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fd331408106b6d393c5b2de2a79582b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a2fd331408106b6d393c5b2de2a79582b">notebookOpened</a> (QString fileName)</td></tr>
-<tr class="memdesc:a2fd331408106b6d393c5b2de2a79582b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнализирует, что записная книжка успешно открыта.  <a href="#a2fd331408106b6d393c5b2de2a79582b">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:a2fd331408106b6d393c5b2de2a79582b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнализирует, что записная книжка успешно открыта.  <a href="classMainWindow.html#a2fd331408106b6d393c5b2de2a79582b">Подробнее...</a><br /></td></tr>
 <tr class="separator:a2fd331408106b6d393c5b2de2a79582b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b24f474cc48ffc5d8738ddf4cc2944e"><td class="memItemLeft" align="right" valign="top"><a id="a5b24f474cc48ffc5d8738ddf4cc2944e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a5b24f474cc48ffc5d8738ddf4cc2944e">notebookSaved</a> ()</td></tr>
@@ -115,18 +126,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:a8b244be8b7b7db1b08de2a2acb9409db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a> (QWidget *parent=0)</td></tr>
-<tr class="memdesc:a8b244be8b7b7db1b08de2a2acb9409db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с необязательным указанием родительского объекта <em>parent</em>.  <a href="#a8b244be8b7b7db1b08de2a2acb9409db">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:a8b244be8b7b7db1b08de2a2acb9409db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор с необязательным указанием родительского объекта <em>parent</em>.  <a href="classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db">Подробнее...</a><br /></td></tr>
 <tr class="separator:a8b244be8b7b7db1b08de2a2acb9409db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae98d00a93bc118200eeef9f9bba1dba7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a> ()</td></tr>
-<tr class="memdesc:ae98d00a93bc118200eeef9f9bba1dba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Деструктор <a class="el" href="classMainWindow.html" title="Класс главного окна программы. ">MainWindow</a>.  <a href="#ae98d00a93bc118200eeef9f9bba1dba7">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:ae98d00a93bc118200eeef9f9bba1dba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Деструктор <a class="el" href="classMainWindow.html" title="Класс главного окна программы.">MainWindow</a>.  <a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">Подробнее...</a><br /></td></tr>
 <tr class="separator:ae98d00a93bc118200eeef9f9bba1dba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Закрытые типы</h2></td></tr>
+<tr class="memitem:acbb248028be589bac28c3f07614f6c6e"><td class="memItemLeft" align="right" valign="top"><a id="acbb248028be589bac28c3f07614f6c6e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#acbb248028be589bac28c3f07614f6c6e">saveMode</a> { <b>BINARY</b> =0x00, 
+<b>TEXT</b> =0x01
+ }</td></tr>
+<tr class="memdesc:acbb248028be589bac28c3f07614f6c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Режим сохранения записной книжки <br /></td></tr>
+<tr class="separator:acbb248028be589bac28c3f07614f6c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Закрытые слоты</h2></td></tr>
+<tr class="memitem:a0e80770317d86685ca596ab5c7bf4b77"><td class="memItemLeft" align="right" valign="top"><a id="a0e80770317d86685ca596ab5c7bf4b77"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a0e80770317d86685ca596ab5c7bf4b77">aboutqt</a> ()</td></tr>
+<tr class="memdesc:a0e80770317d86685ca596ab5c7bf4b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отображает окно с информацией о qt. <br /></td></tr>
+<tr class="separator:a0e80770317d86685ca596ab5c7bf4b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe2f1f694b830c5a60dfd87f1f029151"><td class="memItemLeft" align="right" valign="top"><a id="afe2f1f694b830c5a60dfd87f1f029151"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#afe2f1f694b830c5a60dfd87f1f029151">displayAbout</a> ()</td></tr>
 <tr class="memdesc:afe2f1f694b830c5a60dfd87f1f029151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отображает окно с информацией о программе. <br /></td></tr>
 <tr class="separator:afe2f1f694b830c5a60dfd87f1f029151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045802a8e005cee79a9320ded6743ea3"><td class="memItemLeft" align="right" valign="top"><a id="a045802a8e005cee79a9320ded6743ea3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a045802a8e005cee79a9320ded6743ea3">toCourses</a> ()</td></tr>
+<tr class="memdesc:a045802a8e005cee79a9320ded6743ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Переходит на самые лучшие e-курсы в мире. <br /></td></tr>
+<tr class="separator:a045802a8e005cee79a9320ded6743ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6295126caa5513786dc2844188c246d5"><td class="memItemLeft" align="right" valign="top"><a id="a6295126caa5513786dc2844188c246d5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a6295126caa5513786dc2844188c246d5">lottery</a> ()</td></tr>
+<tr class="memdesc:a6295126caa5513786dc2844188c246d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запускает лотерею. <br /></td></tr>
+<tr class="separator:a6295126caa5513786dc2844188c246d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ac44c1d9bdffc1bce7e5f14ddf1feb"><td class="memItemLeft" align="right" valign="top"><a id="af2ac44c1d9bdffc1bce7e5f14ddf1feb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#af2ac44c1d9bdffc1bce7e5f14ddf1feb">newNotebook</a> ()</td></tr>
 <tr class="memdesc:af2ac44c1d9bdffc1bce7e5f14ddf1feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создаёт новую записную книжку. <br /></td></tr>
@@ -135,10 +166,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a0fb96a1452c0621d717e84740164bc18">saveNotebook</a> ()</td></tr>
 <tr class="memdesc:a0fb96a1452c0621d717e84740164bc18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохраняет текущую записную книжку. Возвращает <code>true</code> в случае успеха. <br /></td></tr>
 <tr class="separator:a0fb96a1452c0621d717e84740164bc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af25e762cb760f27a1dd9c31f35a177e1"><td class="memItemLeft" align="right" valign="top"><a id="af25e762cb760f27a1dd9c31f35a177e1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#af25e762cb760f27a1dd9c31f35a177e1">saveNotebookAs</a> ()</td></tr>
-<tr class="memdesc:af25e762cb760f27a1dd9c31f35a177e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохраняет текущую записную книжку в указанном пользователем файле. Возвращает <code>true</code> в случае успеха. <br /></td></tr>
-<tr class="separator:af25e762cb760f27a1dd9c31f35a177e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9571c1dd5a12fc3e3556a125ef3b5f60"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a9571c1dd5a12fc3e3556a125ef3b5f60">saveNotebookAs</a> (<a class="el" href="classMainWindow.html#acbb248028be589bac28c3f07614f6c6e">saveMode</a> mode=BINARY)</td></tr>
+<tr class="separator:a9571c1dd5a12fc3e3556a125ef3b5f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f826b17e197228fa55a4856e3c0a216"><td class="memItemLeft" align="right" valign="top"><a id="a8f826b17e197228fa55a4856e3c0a216"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a8f826b17e197228fa55a4856e3c0a216">saveNotebookAsText</a> ()</td></tr>
+<tr class="memdesc:a8f826b17e197228fa55a4856e3c0a216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохраняет текущую записную книжку в указанном пользователем текстовом файле. Возвращает <code>true</code> в случае успеха. <br /></td></tr>
+<tr class="separator:a8f826b17e197228fa55a4856e3c0a216"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2903155d9c73d72c485237e1cb31894b"><td class="memItemLeft" align="right" valign="top"><a id="a2903155d9c73d72c485237e1cb31894b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a2903155d9c73d72c485237e1cb31894b">openNotebook</a> ()</td></tr>
 <tr class="memdesc:a2903155d9c73d72c485237e1cb31894b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Открывает записную книжку вместо текущей. Возвращает <code>true</code> в случае успеха. <br /></td></tr>
@@ -151,6 +184,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a0a3fe050e90e7e6902ffa7fcc857df05">newNote</a> ()</td></tr>
 <tr class="memdesc:a0a3fe050e90e7e6902ffa7fcc857df05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создаёт новую заметку в текущей записной книжке. Возвращает <code>true</code> в случае успеха. <br /></td></tr>
 <tr class="separator:a0a3fe050e90e7e6902ffa7fcc857df05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab981c550cd4bec81290db05d6ffb227e"><td class="memItemLeft" align="right" valign="top"><a id="ab981c550cd4bec81290db05d6ffb227e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ab981c550cd4bec81290db05d6ffb227e">editNote</a> (QModelIndex idx)</td></tr>
+<tr class="memdesc:ab981c550cd4bec81290db05d6ffb227e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Позволяет редактировать имеющуюся заметку, ассоциирующуюся с индексом <code>idx</code>. <br /></td></tr>
+<tr class="separator:ab981c550cd4bec81290db05d6ffb227e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff30cb658a2c19a60f84d7c341ba6470"><td class="memItemLeft" align="right" valign="top"><a id="aff30cb658a2c19a60f84d7c341ba6470"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aff30cb658a2c19a60f84d7c341ba6470">deleteNotes</a> ()</td></tr>
 <tr class="memdesc:aff30cb658a2c19a60f84d7c341ba6470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Удаляет выбранные заметки из текущей записной книжки. <br /></td></tr>
@@ -159,12 +196,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aaa99f6eaa438dea4536f94b35377e3e6">refreshWindowTitle</a> ()</td></tr>
 <tr class="memdesc:aaa99f6eaa438dea4536f94b35377e3e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обновляет заголовок окна. <br /></td></tr>
 <tr class="separator:aaa99f6eaa438dea4536f94b35377e3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8905dee34dff6c552a4ba22b47fa4f0"><td class="memItemLeft" align="right" valign="top"><a id="ac8905dee34dff6c552a4ba22b47fa4f0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ac8905dee34dff6c552a4ba22b47fa4f0">disableNoteList</a> (bool cond)</td></tr>
+<tr class="memdesc:ac8905dee34dff6c552a4ba22b47fa4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отключает вид списка заметок. <br /></td></tr>
+<tr class="separator:ac8905dee34dff6c552a4ba22b47fa4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32334be6b40d4b811c6b8c30ec9d42f9"><td class="memItemLeft" align="right" valign="top"><a id="a32334be6b40d4b811c6b8c30ec9d42f9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a32334be6b40d4b811c6b8c30ec9d42f9">disableDeleteAction</a> ()</td></tr>
+<tr class="memdesc:a32334be6b40d4b811c6b8c30ec9d42f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отключает возможность удаления заметок, если нет выделенных заметок. <br /></td></tr>
+<tr class="separator:a32334be6b40d4b811c6b8c30ec9d42f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7101525b4d442cf8e0074807ae1e97b4"><td class="memItemLeft" align="right" valign="top"><a id="a7101525b4d442cf8e0074807ae1e97b4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a7101525b4d442cf8e0074807ae1e97b4">disableUIActions</a> (bool disable)</td></tr>
+<tr class="memdesc:a7101525b4d442cf8e0074807ae1e97b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отключает некоторые элементы графического интерфейса: создание заметок, сохранения и т.п. <br /></td></tr>
+<tr class="separator:a7101525b4d442cf8e0074807ae1e97b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce3ae8e5ade3fea3baafb4ab154ae99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#afce3ae8e5ade3fea3baafb4ab154ae99">reconnectWithNewModel</a> ()</td></tr>
+<tr class="separator:afce3ae8e5ade3fea3baafb4ab154ae99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a627d7b538a0d60645e6c339bd787eeee"><td class="memItemLeft" align="right" valign="top"><a id="a627d7b538a0d60645e6c339bd787eeee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a627d7b538a0d60645e6c339bd787eeee">exit</a> ()</td></tr>
+<tr class="memdesc:a627d7b538a0d60645e6c339bd787eeee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершает работу программы. <br /></td></tr>
+<tr class="separator:a627d7b538a0d60645e6c339bd787eeee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Закрытые члены</h2></td></tr>
-<tr class="memitem:a7e9386985bcdb61c287f0249eea9c604"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a7e9386985bcdb61c287f0249eea9c604">saveNotebookToFile</a> (QString fileName)</td></tr>
-<tr class="memdesc:a7e9386985bcdb61c287f0249eea9c604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохраняет текущую записную книжку в файл.  <a href="#a7e9386985bcdb61c287f0249eea9c604">Подробнее...</a><br /></td></tr>
-<tr class="separator:a7e9386985bcdb61c287f0249eea9c604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad24b8b0e3c043d2984830555d99f6bb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ad24b8b0e3c043d2984830555d99f6bb8">saveNotebookToFile</a> (QString fileName, <a class="el" href="classMainWindow.html#acbb248028be589bac28c3f07614f6c6e">saveMode</a> mode)</td></tr>
+<tr class="memdesc:ad24b8b0e3c043d2984830555d99f6bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сохраняет текущую записную книжку в файл.  <a href="classMainWindow.html#ad24b8b0e3c043d2984830555d99f6bb8">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad24b8b0e3c043d2984830555d99f6bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef889e76145a694625cdf634299ad061"><td class="memItemLeft" align="right" valign="top"><a id="aef889e76145a694625cdf634299ad061"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aef889e76145a694625cdf634299ad061">isNotebookOpen</a> () const</td></tr>
 <tr class="memdesc:aef889e76145a694625cdf634299ad061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает <code>true</code>, если в настоящий момент имеется открытая записная книжка. <br /></td></tr>
@@ -181,21 +236,21 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ac5622f2ac7418d880604adee3b408cde">createNotebook</a> ()</td></tr>
 <tr class="memdesc:ac5622f2ac7418d880604adee3b408cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создаёт новую записную книжку. <br /></td></tr>
 <tr class="separator:ac5622f2ac7418d880604adee3b408cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d78fb17315d70de58b4fc78c4fa751c"><td class="memItemLeft" align="right" valign="top"><a id="a2d78fb17315d70de58b4fc78c4fa751c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a2d78fb17315d70de58b4fc78c4fa751c">setNotebook</a> (<a class="el" href="classNotebook.html">Notebook</a> *notebook)</td></tr>
-<tr class="memdesc:a2d78fb17315d70de58b4fc78c4fa751c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Устанавливает указатель на текущую записную книжку равным <em>notebook</em>. <br /></td></tr>
-<tr class="separator:a2d78fb17315d70de58b4fc78c4fa751c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a391dc7ecc17dfb96f5b2afa8673261f2"><td class="memItemLeft" align="right" valign="top"><a id="a391dc7ecc17dfb96f5b2afa8673261f2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a391dc7ecc17dfb96f5b2afa8673261f2">setNotebook</a> (<a class="el" href="classNotebook.html">Notebook</a> *nb)</td></tr>
+<tr class="memdesc:a391dc7ecc17dfb96f5b2afa8673261f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Устанавливает указатель на текущую записную книжку равным <em>notebook</em>. <br /></td></tr>
+<tr class="separator:a391dc7ecc17dfb96f5b2afa8673261f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af78829e2f770a8b4b99a40bf7b630925"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#af78829e2f770a8b4b99a40bf7b630925">destroyNotebook</a> ()</td></tr>
-<tr class="memdesc:af78829e2f770a8b4b99a40bf7b630925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Уничтожает объект текущей записной книжки.  <a href="#af78829e2f770a8b4b99a40bf7b630925">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:af78829e2f770a8b4b99a40bf7b630925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Уничтожает объект текущей записной книжки.  <a href="classMainWindow.html#af78829e2f770a8b4b99a40bf7b630925">Подробнее...</a><br /></td></tr>
 <tr class="separator:af78829e2f770a8b4b99a40bf7b630925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Закрытые данные</h2></td></tr>
 <tr class="memitem:ae726dc0c4cb46920180b2031664c5c93"><td class="memItemLeft" align="right" valign="top">Ui::MainWindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ae726dc0c4cb46920180b2031664c5c93">mUi</a></td></tr>
-<tr class="memdesc:ae726dc0c4cb46920180b2031664c5c93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на сгенерированный интерфейс.  <a href="#ae726dc0c4cb46920180b2031664c5c93">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:ae726dc0c4cb46920180b2031664c5c93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на сгенерированный интерфейс.  <a href="classMainWindow.html#ae726dc0c4cb46920180b2031664c5c93">Подробнее...</a><br /></td></tr>
 <tr class="separator:ae726dc0c4cb46920180b2031664c5c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c681720e7337dbb640b9e68098f3446"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classNotebook.html">Notebook</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a5c681720e7337dbb640b9e68098f3446">mNotebook</a></td></tr>
-<tr class="memdesc:a5c681720e7337dbb640b9e68098f3446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на текущую записную книжку.  <a href="#a5c681720e7337dbb640b9e68098f3446">Подробнее...</a><br /></td></tr>
+<tr class="memdesc:a5c681720e7337dbb640b9e68098f3446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на текущую записную книжку.  <a href="classMainWindow.html#a5c681720e7337dbb640b9e68098f3446">Подробнее...</a><br /></td></tr>
 <tr class="separator:a5c681720e7337dbb640b9e68098f3446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d5dfee992005d61bf5b83be342b1e5e"><td class="memItemLeft" align="right" valign="top"><a id="a4d5dfee992005d61bf5b83be342b1e5e"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a4d5dfee992005d61bf5b83be342b1e5e">mNotebookFileName</a></td></tr>
@@ -205,7 +260,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Класс главного окна программы. </p>
 <p>Отвечает за реализацию функций, специфичных для данной конкретной программы. За реализацию функций, общих для всех программ с графическим интерфейсом, отвечает класс QMainWindow из библиотеки Qt.</p>
-<p><a class="el" href="classMainWindow.html" title="Класс главного окна программы. ">MainWindow</a> является производным классом от QMainWindow и может добавлять свои атрибуты и методы к тем, которые уже есть в QMainWindow. </p>
+<p><a class="el" href="classMainWindow.html" title="Класс главного окна программы.">MainWindow</a> является производным классом от QMainWindow и может добавлять свои атрибуты и методы к тем, которые уже есть в QMainWindow. </p>
 </div><h2 class="groupheader">Конструктор(ы)</h2>
 <a id="a8b244be8b7b7db1b08de2a2acb9409db"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b244be8b7b7db1b08de2a2acb9409db">&#9670;&nbsp;</a></span>MainWindow()</h2>
@@ -251,8 +306,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
       </table>
 </div><div class="memdoc">
 
-<p>Деструктор <a class="el" href="classMainWindow.html" title="Класс главного окна программы. ">MainWindow</a>. </p>
-<p>Отвечает за уничтожение объектов <a class="el" href="classMainWindow.html" title="Класс главного окна программы. ">MainWindow</a>. Сюда можно поместить функции, которые надо выполнить перед уничтожением (например, закрыть какие-либо файлы или освободить память). </p>
+<p>Деструктор <a class="el" href="classMainWindow.html" title="Класс главного окна программы.">MainWindow</a>. </p>
+<p>Отвечает за уничтожение объектов <a class="el" href="classMainWindow.html" title="Класс главного окна программы.">MainWindow</a>. Сюда можно поместить функции, которые надо выполнить перед уничтожением (например, закрыть какие-либо файлы или освободить память). </p>
 
 </div>
 </div>
@@ -281,7 +336,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div><div class="memdoc">
 
 <p>Уничтожает объект текущей записной книжки. </p>
-<p>Прекращает отображение текущей записной книжки в графическом интерфейсе и удаляет объект <a class="el" href="classNotebook.html" title="Класс записной книжки. ">Notebook</a> по указателю mNotebook. </p>
+<p>Прекращает отображение текущей записной книжки в графическом интерфейсе и удаляет объект <a class="el" href="classNotebook.html" title="Класс записной книжки.">Notebook</a> по указателю mNotebook. </p>
 
 </div>
 </div>
@@ -354,8 +409,61 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="a7e9386985bcdb61c287f0249eea9c604"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e9386985bcdb61c287f0249eea9c604">&#9670;&nbsp;</a></span>saveNotebookToFile()</h2>
+<a id="afce3ae8e5ade3fea3baafb4ab154ae99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce3ae8e5ade3fea3baafb4ab154ae99">&#9670;&nbsp;</a></span>reconnectWithNewModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::reconnectWithNewModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Производит связывание сигналов, присущих модели, и слотов, так как при смене записных книг меняется и модель. </p>
+
+</div>
+</div>
+<a id="a9571c1dd5a12fc3e3556a125ef3b5f60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9571c1dd5a12fc3e3556a125ef3b5f60">&#9670;&nbsp;</a></span>saveNotebookAs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MainWindow::saveNotebookAs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMainWindow.html#acbb248028be589bac28c3f07614f6c6e">saveMode</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>BINARY</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Сохраняет текущую записную книжку в указанном пользователем файле в соответствии с режимом <code>mode</code>. Возвращает <code>true</code> в случае успеха. если режим не был указан, то сохранение произойдёт в двоичном формате </p>
+
+</div>
+</div>
+<a id="ad24b8b0e3c043d2984830555d99f6bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad24b8b0e3c043d2984830555d99f6bb8">&#9670;&nbsp;</a></span>saveNotebookToFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -367,8 +475,18 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td class="memname">void MainWindow::saveNotebookToFile </td>
           <td>(</td>
           <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td class="paramname"><em>fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classMainWindow.html#acbb248028be589bac28c3f07614f6c6e">saveMode</a>&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -381,11 +499,12 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Сохраняет текущую записную книжку в файл. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fileName</td><td>Имя файла.</td></tr>
+    <tr><td class="paramname">fileName</td><td>Имя файла. </td></tr>
+    <tr><td class="paramname">mode</td><td>Режим сохранения: текстовый или двоичный</td></tr>
   </table>
   </dd>
 </dl>
-<p>Сохраняет текущую записную книжку в файл <em>fileName</em>. Данный метод отвечает непосредственно за сохранение и не предусматривает диалога с пользователем. </p>
+<p>Сохраняет в соответствии с режимом <em>mode</em> текущую записную книжку в файл <em>fileName</em>. Данный метод отвечает непосредственно за сохранение и не предусматривает диалога с пользователем. </p>
 
 </div>
 </div>
@@ -450,7 +569,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <hr class="footer"/><address class="footer"><small>
 Создано системой &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
+</a> 1.8.18
 </small></address>
 </body>
 </html>
