@@ -83,7 +83,7 @@
     <message>
         <location filename="mainwindow.ui" line="74"/>
         <source>Disable Note list</source>
-        <translation>Скрыть заметки</translation>
+        <translation>Отключить поле заметок</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="91"/>
