@@ -78,24 +78,24 @@ void EditNoteDialog::accept()
     if ((mUi->titleEdit->text().isEmpty() and mUi->plainTextEdit->toPlainText().isEmpty()))
     {
         QMessageBox::warning(this, tr("Error"),
-                             (!notNewNote) ? tr("Unable to create the note with empty title and body") :
-                                            tr("Unable to save the note with empty title and body"),
+             (!notNewNote) ? tr("Unable to create the note with empty title and body") :
+                             tr("Unable to save the note with empty title and body"),
                              QMessageBox::Ok);
         return;
     }
     if (mUi->titleEdit->text().isEmpty())
     {
         QMessageBox::warning(this, tr("Error"),
-                             (!notNewNote) ? tr("Unable to create the note with empty title") :
-                                            tr("Unable to save the note with empty title"),
+             (!notNewNote) ? tr("Unable to create the note with empty title") :
+                             tr("Unable to save the note with empty title"),
                              QMessageBox::Ok);
         return;
     }
     if (mUi->plainTextEdit->toPlainText().isEmpty())
     {
         QMessageBox::warning(this, tr("Error"),
-                             (!notNewNote) ? tr("Unable to create the note with empty body") :
-                                            tr("Unable to save the note with empty body"),
+             (!notNewNote) ? tr("Unable to create the note with empty body") :
+                             tr("Unable to save the note with empty body"),
                              QMessageBox::Ok);
         return;
     }

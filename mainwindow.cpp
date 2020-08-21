@@ -24,7 +24,6 @@
 #include <QtGlobal> // qVersion()
 #include <QDesktopServices> // openUrl()
 #include <QUrl>
-#include <QRandomGenerator> // bounded()
 #include <QDate> // currentDate()
 
 #include "config.hpp"
@@ -66,9 +65,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Действия, связанные с готовностью записной книжки.
     // Протовоположны действиям, связанным с закрытием записной книжки
     connect(this, &MainWindow::notebookReady, [this] { disableUIActions(false);});
-
     // Для корректной работы при открытии новых записных книжек, то есть при изменении модели,
-    // присоединяем сигналы, специфичные для каждой модели, и слоты
+    // связываем сигналы, специфичные для каждой модели, и необходимые слоты
     connect(this, &MainWindow::notebookReady, this, &MainWindow::reconnectWithNewModel);
 
     // Отображаем GUI, сгенерированный из файла mainwindow.ui, в данном окне
@@ -88,13 +86,6 @@ MainWindow::~MainWindow()
 {
     // Удаляем объект Ui::MainWindow
     delete mUi;
-}
-
-void MainWindow::disableDeleteAction()
-{
-    // отключаем кнопку "удалить заметку", если нет выделенных заметок
-    mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()
-                                         ->hasSelection());
 }
 
 void MainWindow::disableUIActions(bool dis)
@@ -128,13 +119,27 @@ void MainWindow::reconnectWithNewModel()
             [this] { setWindowModified(true); });
 }
 
+void MainWindow::disableDeleteAction()
+{
+    // отключаем кнопку "удалить заметку", если нет выделенных заметок
+    mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()
+                                         ->hasSelection());
+}
+
+
 void MainWindow::disableNoteList(bool cond)
 {
+    // отключаем(или нет) список заметок
     mUi->notesView->setDisabled(cond);
+    // "снимаем" выделение, чтобы не было возможности удалять
+    // заметки, когда список заметок выключен
+    mUi->notesView->selectionModel()->clearSelection();
 }
 
 void MainWindow::aboutqt()
 {
+    // Во многих программах, написанных с помощью qt, есть
+    // окно с информацией о qt
     QMessageBox::aboutQt(this);
 }
 
@@ -167,7 +172,7 @@ void MainWindow::displayAbout()
     // Устанавливаем основной текст в окне aboutDlg
     aboutDlg.setText(tr("%1 %2<br>"
         "Author: <a href=\"mailto:kpushkarev@sfu-kras.ru\">Kirill Pushkaryov</a>, 2019.<br>"
-        "Edited in 2020 by <a href=\"mailto:y-kashapov@inbox.ru\">"
+        "Edited in 2020 by <a href=\"mailto:ykashapov-ki19@stud.sfu-kras.ru\">"
         "Yaroslav Kashapov Fanizovich</a>,<br>КИ19-07б, 031939609.<br>"
         "Sourses: <a href=\"https://github.com/kashapovd/toynote\">github</a><br>"
         "License: WTFPL.<br>"
@@ -261,7 +266,10 @@ bool MainWindow::saveNotebook()
 bool MainWindow::saveNotebookAs(saveMode mode)
 {
     // Выводим диалог выбора файла для сохранения
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Notebook As"), QString(), Config::notebookFileNameFilter);
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Notebook As"),
+                                                    QString(),
+                                     (mode==TEXT) ? Config::textNotebookFileNameFilter :
+                                                    Config::binNotebookFileNameFilter);
     // Если пользователь не выбрал файл, возвращаем false
     if (fileName.isEmpty())
     {
@@ -293,7 +301,9 @@ bool MainWindow::openNotebook()
     }
 
     // Выводим диалог выбора файла для открытия
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Notebook"), QString(), Config::notebookFileNameFilter);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Notebook"),
+                                                    QString(),
+                                                    Config::binNotebookFileNameFilter);
     // Если пользователь не выбрал файл, возвращаем false
     if (fileName.isEmpty()) {
 
@@ -323,7 +333,10 @@ bool MainWindow::openNotebook()
     catch (const std::exception &e)
     {
         // Если при открытии файла возникла исключительная ситуация, сообщить пользователю
-        QMessageBox::critical(this, Config::applicationName, tr("Unable to open the file %1: %2").arg(fileName).arg(e.what()));
+        QMessageBox::critical(this, Config::applicationName, tr("Unable to open "
+                                                                "the file %1: %2")
+                                                                .arg(fileName)
+                                                                .arg(e.what()));
         return false;
     }
     // Устанавливаем текущее имя файла
@@ -425,39 +438,42 @@ void MainWindow::editNote(QModelIndex idx)
 
 void MainWindow::deleteNotes()
 {
+    // Получаем от таблицы заметок список индексов выбранных в настоящий момент
+    // элементов
+    QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
     // Для хранения номеров строк создаём STL-контейнер "множество", элементы
     // которого автоматически упорядочиваются по возрастанию
     std::set<int> rows;
-        // Получаем от таблицы заметок список индексов выбранных в настоящий момент
-        // элементов
-        QModelIndexList idc = mUi->notesView->selectionModel()->selectedRows();
+    {
         // Вставляем номера выбранных строк в rows
         for (const auto &i : idc)
         {
             rows.insert(i.row());
         }
+    }
     // Cтрока, содержащая названия заметок для удаления (выделенных заметок)
-    // будет отображена в окне подтверждения удаления заметок.
+    // будет отображена в окне подтверждения удаления заметок
     QString rmNote;
-    for (const auto &it : rows)
+
+    // если выбрана одна заметка
+    if (rows.size() == 1)
     {
-        // если выбрана одна заметка
-        if (rows.size() == 1)
+        rmNote = (*mNotebook)[0].title();
+    }
+    else // если выбрано несколько
+    {
+        for (const auto &it : rows)
         {
-            rmNote = (*mNotebook)[it].title();
-        }
-        // если выбрано несколько
-        else
-        {
-           rmNote.append(tr("<br>• ") + (*mNotebook)[it].title());
+            rmNote.append(tr("<br>• ") + (*mNotebook)[it].title());
         }
     }
+
     int ret = QMessageBox::question(this, Config::applicationName,
-                    (rows.size() != 1) ? tr("Do you really want to remove the "
-                                            "following notes:<br><i>%1<i>").arg(rmNote) :
-                                         tr("Do you really want to remove the "
-                                            "<i>%1<i>?").arg(rmNote),
-                          QMessageBox::Yes | QMessageBox::No);
+               (rows.size() != 1) ? tr("Do you really want to remove the "
+                                       "following notes:<br><i>%1<i>").arg(rmNote) :
+                                    tr("Do you really want to remove the "
+                                       "<i>%1<i>?").arg(rmNote),
+                                    QMessageBox::Yes | QMessageBox::No);
     // Если No, удалять не нужно.
     if (ret == QMessageBox::No) return;
 
@@ -466,7 +482,7 @@ void MainWindow::deleteNotes()
         // Удаляем строку
         mNotebook->erase(*it);
     }
-    // Сигнализируем видам о изменении таблицы данных
+    // Сигнализируем видам о изменении модели
     emit mNotebook->dataChanged(idc.first(), idc.last());
 }
 
