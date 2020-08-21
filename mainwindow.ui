@@ -310,7 +310,7 @@
      <normaloff>:/icons/qt.svg</normaloff>:/icons/qt.svg</iconset>
    </property>
    <property name="text">
-    <string>About Qt</string>
+    <string>About &amp;Qt</string>
    </property>
   </action>
  </widget>
