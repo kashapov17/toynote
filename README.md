@@ -3,4 +3,4 @@ Toynote — простое графическое приложение для з
 
 [Кирилл Владимирович Пушкарёв](mailto:kpushkarev@sfu-kras.ru), 2019 г.
 \
-[Кашапов Ярослав Фанизович](mailto:y-kashapov@mail.ru), 2020 г.
+[Кашапов Ярослав Фанизович](mailto:ykashapov-ki19@stud.sfu-kras.ru), 2020 г.
