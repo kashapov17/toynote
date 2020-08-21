@@ -24,7 +24,7 @@ namespace Config
 const char applicationName[] = QT_TRANSLATE_NOOP("Config", "Toynote");
 
 /// Версия приложения
-const char applicationVersion[] = "20200814";
+const char applicationVersion[] = "20200821";
 
 /**
  * @brief Фильтр для имён файлов записных книжек.
@@ -38,7 +38,8 @@ const char applicationVersion[] = "20200814";
  * несколько фильтров через парную точку с запятой (;;). Подробнее см. в
  * документации QFileDialog.
  */
-const char notebookFileNameFilter[] = QT_TRANSLATE_NOOP("Config", "Notebooks (*.tnb)");
+const char binNotebookFileNameFilter[] = QT_TRANSLATE_NOOP("Config", "Notebooks (*.tnb)");
+const char textNotebookFileNameFilter[]= QT_TRANSLATE_NOOP("Config", "Text (*.txt)");
 
 }
 #endif // CONFIG_HPP
