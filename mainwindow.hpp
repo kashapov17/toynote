@@ -58,11 +58,16 @@ private:
      * @param fileName Имя файла.
      * @param mode Режим сохранения: текстовый или двоичный
      */
-    void saveNotebookToFile(QString fileName, saveMode mode);
+    void saveNotebookToFile(const QString &fileName, const saveMode &mode);
     /// Возвращает @c true, если в настоящий момент имеется открытая записная книжка.
     bool isNotebookOpen() const;
+    /**
+     * Логическая переменная, сообщающая является ли текущее актуальное
+     * состояние записной книги сохранённым
+     */
+    bool isNotebookSaved;
     /// Устанавливает имя файла текущей записной книжки равным @a name.
-    void setNotebookFileName(QString name = QString());
+    void setNotebookFileName(const QString &name = QString());
     /// Возвращает имя файла текущей записной книжки.
     QString notebookName() const;
     /// Создаёт новую записную книжку.
@@ -104,7 +109,7 @@ private slots:
     /// Переходит на самые лучшие e-курсы в мире.
     void toCourses();
     /// Запускает лотерею.
-    void lottery();
+    void startLottery();
     /// Создаёт новую записную книжку.
     void newNotebook();
     /// Сохраняет текущую записную книжку. Возвращает @c true в случае успеха.
@@ -114,7 +119,7 @@ private slots:
      * с режимом @p mode. Возвращает @c true в случае успеха.
      * если режим не был указан, то сохранение произойдёт в двоичном формате
      */
-    bool saveNotebookAs(saveMode mode=BINARY);
+    bool saveNotebookAs(const saveMode &mode=BINARY);
     /// Сохраняет текущую записную книжку в указанном пользователем текстовом файле. Возвращает @c true в случае успеха.
     bool saveNotebookAsText();
     /// Открывает записную книжку вместо текущей. Возвращает @c true в случае успеха.
@@ -134,7 +139,7 @@ private slots:
     /// Отключает возможность удаления заметок, если нет выделенных заметок.
     void disableDeleteAction();
     /// Отключает некоторые элементы графического интерфейса: создание заметок, сохранения и т.п.
-    void disableUIActions(bool disable);
+    void disableUIActions(const bool &disable);
     /**
      * Производит связывание сигналов, присущих модели, и слотов, так как при смене записных книг
      * меняется и модель.

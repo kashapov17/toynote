@@ -14,7 +14,7 @@ lottery::lottery(){}
  * @brief Метод, имитирующий лотерею
  * @return Наименование приза
  */
-QString lottery::kick_the_bucket()
+const QString lottery::kick_the_bucket()
 {
     QRandomGenerator rand(time(nullptr));
     // generateDouble() вернёт [0, 1)

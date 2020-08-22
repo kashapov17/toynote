@@ -24,10 +24,13 @@ namespace Config
 const char applicationName[] = QT_TRANSLATE_NOOP("Config", "Toynote");
 
 /// Версия приложения
-const char applicationVersion[] = "20200821";
+const char applicationVersion[] = "20200823";
 
 /**
- * @brief Фильтр для имён файлов записных книжек.
+ * @brief Фильтры для имён файлов записных книжек.
+ *
+ * .tnb для бинарных файлов
+ * .txt для текстовых файлов
  *
  * Фильтры используются диалогом QFileDialog, в котором пользователь выбирает
  * файл при сохранении или открытии записной книжки. Обычно они отображаются

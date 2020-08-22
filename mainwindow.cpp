@@ -57,8 +57,24 @@ MainWindow::MainWindow(QWidget *parent) :
     // скобках записывается тело этой функции. Таким образом, в данном случае
     // сигнал MainWindow::notebookCreated будет вызывать код, записанный в
     // фигурных скобках, то есть метод MainWindow::setWindowModified() с параметром true.
-    connect(this, &MainWindow::notebookCreated, [this] { setWindowModified(true); });
-    connect(this, &MainWindow::notebookSaved, [this] { setWindowModified(false); });
+    connect(this, &MainWindow::notebookCreated, [this]
+    {
+        isNotebookSaved = false;
+        setWindowModified(true);
+    });
+    connect(this, &MainWindow::notebookSaved, [this]
+    {
+        isNotebookSaved = true;
+        setWindowModified(false);
+    });
+
+    // если книга была открыта, то она находится в актуальном состоянии
+    // => сохранять нечего
+    connect(this, &MainWindow::notebookOpened, [this]
+    {
+        isNotebookSaved = true;
+        setWindowModified(false);
+    });
 
     // Действия, связанные с закрытием записной книжки
     connect(this, &MainWindow::notebookClosed, [this] { disableUIActions(true);});
@@ -88,14 +104,15 @@ MainWindow::~MainWindow()
     delete mUi;
 }
 
-void MainWindow::disableUIActions(bool dis)
+void MainWindow::disableUIActions(const bool &dis)
 {
     // Отключаем возможность создания заметок через меню-бар
     mUi->actionNew_Note->     setDisabled(dis);
     // Отключаем возможность отключения вида таблицы заметок
     mUi->checkBox->           setDisabled(dis);
     // Отключаем отображение таблицы заметок
-    mUi->notesView->          setDisabled(dis);
+    mUi->notesView->          setDisabled(dis or
+                                          static_cast<bool>(mUi->checkBox->checkState()));
     // Отключаем возможность сохранять книжку в текущий файл
     mUi->actionSave->         setDisabled(dis);
     // Отключаем возможность сохранять книжку
@@ -104,8 +121,8 @@ void MainWindow::disableUIActions(bool dis)
     mUi->actionSave_As_Text-> setDisabled(dis);
     // Отключаем возможность закрывать записную книжку
     mUi->actionCloseNotebook->setDisabled(dis);
-    // Отключаем возможность удалять заметки по умолчанию
-    mUi->actionDelete_Notes-> setDisabled(true);
+    // Отключаем возможность удалять если нет выделенных.
+    mUi->actionDelete_Notes-> setDisabled(!mUi->notesView->selectionModel()->hasSelection());
 }
 
 void MainWindow::reconnectWithNewModel()
@@ -114,9 +131,13 @@ void MainWindow::reconnectWithNewModel()
     // если нет выделенных заметок
     connect(mUi->notesView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &MainWindow::disableDeleteAction);
-    // при изменении данных в модели ставим [*] в заголовке окна
+    // данные изменились => есть что сохранить => ставим [*] в заголовке окна
     connect(mUi->notesView->model(), &QAbstractItemModel::dataChanged,
-            [this] { setWindowModified(true); });
+            [this]
+    {
+        isNotebookSaved = false;
+        setWindowModified(true);
+    });
 }
 
 void MainWindow::disableDeleteAction()
@@ -125,7 +146,6 @@ void MainWindow::disableDeleteAction()
     mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()
                                          ->hasSelection());
 }
-
 
 void MainWindow::disableNoteList(bool cond)
 {
@@ -194,9 +214,9 @@ void MainWindow::toCourses()
     QDesktopServices::openUrl(QUrl("https://e.sfu-kras.ru"));
 }
 
-void MainWindow::lottery()
+void MainWindow::startLottery()
 {
-    class lottery lot;
+    lottery lot;
     // Получаем приз
     const QString prize = lot.kick_the_bucket();
     // Создаём окно с датой и результатами лотереи
@@ -210,8 +230,6 @@ void MainWindow::lottery()
                    .arg(prize));
     // Добавляем единственную кнопку "выход"
     lotBox.setStandardButtons(QMessageBox::Cancel);
-    //lotBox.setDefaultButton(QMessageBox::Cancel);
-
     // QMessageBox не поддерживает изменение размеров. В данном случае не будет видно заголовка окна,
     // и это зависит от текста в нём. С помощью манипуляций с сеткой окна можно установить минимальный
     // фиксированный размер - 300 точек
@@ -263,7 +281,7 @@ bool MainWindow::saveNotebook()
     return true;
 }
 
-bool MainWindow::saveNotebookAs(saveMode mode)
+bool MainWindow::saveNotebookAs(const saveMode &mode)
 {
     // Выводим диалог выбора файла для сохранения
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Notebook As"),
@@ -277,12 +295,18 @@ bool MainWindow::saveNotebookAs(saveMode mode)
     }
     // Сохраняем записную книжку в выбранный файл
     saveNotebookToFile(fileName, mode);
-    // Устанавливаем выбранное имя файла в качестве текущего
-    setNotebookFileName(fileName);
-    // Сигнализируем о готовности
-    emit notebookReady();
-    // Сигнализируем о сохранении записной книжки
-    emit notebookSaved();
+    // Если сохранение осуществляется в текстовый файл, менять имя
+    // текущего файла нет смысла, поскольку считать данные из такого файла
+    // невозможно. Другими словами, *просто* сохраняем заметки в текстовый файл
+    if (mode != TEXT)
+    {
+        // Устанавливаем выбранное имя файла в качестве текущего
+        setNotebookFileName(fileName);
+        // Сигнализируем о готовности
+        emit notebookReady();
+        // Сигнализируем о сохранении записной книжки
+        emit notebookSaved();
+    }
     return true;
 }
 
@@ -355,6 +379,17 @@ bool MainWindow::closeNotebook()
     {
         return true;
     }
+    // Если записная книжка уже сохранена, просто закрываем её
+    if (isNotebookSaved)
+    {
+        // Уничтожаем объект записной книжки
+        destroyNotebook();
+        // Сбрасываем текущее имя файла
+        setNotebookFileName();
+        // Сигнализируем о закрытии записной книжки
+        emit notebookClosed();
+        return true;
+    }
     // Создаём окно с вопросом о сохранении файла
     QMessageBox saveQuery(this);
     // Устанавливаем иконку вопроса
@@ -408,8 +443,6 @@ bool MainWindow::newNote()
     }
     // Вставляем заметку в записную книжку
     mNotebook->insert(note);
-    // Сигнализируем видам о изменении таблицы данных
-    emit mNotebook->dataChanged(QModelIndex(), QModelIndex());
     return true;
 }
 
@@ -420,20 +453,24 @@ void MainWindow::editNote(QModelIndex idx)
         QMessageBox::warning(this, tr("Error"), tr("Unable to edit several notes"), QMessageBox::Ok);
         return;
     }
+    Note *note = const_cast<Note *>(&(*mNotebook)[idx.row()]);
+    // сохраняем значения текущей и ещё не отредактированной заметки
+    QString noteText = note->text();
+    QString noteTitle = note->title();
     // Создаём диалог редактирования заметки
     EditNoteDialog editDlg(this);
     // Устанавливаем заголовок окна редактирования
     editDlg.setWindowTitle(tr("Note Editor"));
     // Передаём указатель на заметку, связанную с idx, и заполняем поля окна редактирования
     // в соответствии с данными заметки
-    editDlg.setNoteForEdit(const_cast<Note *>(&(*mNotebook)[idx.row()]));
+    editDlg.setNoteForEdit(note);
     // Запускаем отображение окна и обрабатываем результат "отмена"
     if (editDlg.exec() != EditNoteDialog::Accepted)
     {
         return;
     }
-    // Сигнализируем видам о изменении таблицы данных
-    emit mNotebook->dataChanged(idx, idx);
+    // Сигнализируем видам о изменении таблицы данных, если заметка была изменена
+    mNotebook->signalIfEdited(idx, noteText, noteTitle);
 }
 
 void MainWindow::deleteNotes()
@@ -458,7 +495,7 @@ void MainWindow::deleteNotes()
     // если выбрана одна заметка
     if (rows.size() == 1)
     {
-        rmNote = (*mNotebook)[0].title();
+        rmNote = (*mNotebook)[idc.first().row()].title();
     }
     else // если выбрано несколько
     {
@@ -468,7 +505,7 @@ void MainWindow::deleteNotes()
         }
     }
 
-    int ret = QMessageBox::question(this, Config::applicationName,
+    QMessageBox::StandardButtons ret = QMessageBox::question(this, Config::applicationName,
                (rows.size() != 1) ? tr("Do you really want to remove the "
                                        "following notes:<br><i>%1<i>").arg(rmNote) :
                                     tr("Do you really want to remove the "
@@ -510,7 +547,7 @@ void MainWindow::refreshWindowTitle()
  * Данный метод отвечает непосредственно за сохранение и не предусматривает диалога с
  * пользователем.
  */
-void MainWindow::saveNotebookToFile(QString fileName, saveMode mode)
+void MainWindow::saveNotebookToFile(const QString &fileName, const saveMode &mode)
 {
     // Блок обработки исключительных ситуаций
     try
@@ -575,7 +612,7 @@ bool MainWindow::isNotebookOpen() const
     return static_cast<bool>(mNotebook);
 }
 
-void MainWindow::setNotebookFileName(QString name)
+void MainWindow::setNotebookFileName(const QString &name)
 {
     // Устанавливаем имя файла
     mNotebookFileName = name;

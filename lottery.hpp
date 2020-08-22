@@ -23,7 +23,7 @@ public:
     /// Конструктор по умолчанию
     lottery();
     /// Возвращает наименование приза, полученного в результате лотереи
-    QString kick_the_bucket();
+    const QString kick_the_bucket();
 
 private:
 

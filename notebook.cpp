@@ -187,9 +187,10 @@ void Notebook::insert(const Note &note)
     // В соответствии с требованиями Qt, уведомляем привязанные виды о том,
     // что мы закончили вставлять строки в модель.
     endInsertRows();
+    dataChanged(index(size(), 1, QModelIndex()),index(size(), 1, QModelIndex()));
 }
 
-void Notebook::erase(SizeType idx)
+void Notebook::erase(const SizeType &idx)
 {
     // В соответствии с требованиями Qt, уведомляем привязанные виды о том,
     // что мы начинаем удалять строки из модели
@@ -202,4 +203,13 @@ void Notebook::erase(SizeType idx)
     // В соответствии с требованиями Qt, уведомляем привязанные виды о том,
     // что мы закончили удалять строки из модели
     endRemoveRows();
+    dataChanged(index(idx, 1, QModelIndex()),index(idx, 1, QModelIndex()));
+}
+
+void Notebook::signalIfEdited(QModelIndex &idx, QString &prevtext, QString &prevtitle)
+{
+    if (mNotes[idx.row()].text() != prevtext or mNotes[idx.row()].title() != prevtitle)
+    {
+        dataChanged(idx, idx);
+    }
 }
