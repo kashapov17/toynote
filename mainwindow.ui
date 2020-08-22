@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>409</width>
-    <height>306</height>
+    <width>400</width>
+    <height>315</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,12 @@
   <property name="windowIcon">
    <iconset resource="resources.qrc">
     <normaloff>:/icons/appicon.svg</normaloff>:/icons/appicon.svg</iconset>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
@@ -49,10 +55,13 @@
        <enum>QFrame::Sunken</enum>
       </property>
       <property name="lineWidth">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="midLineWidth">
        <number>1</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
       </property>
       <property name="dragEnabled">
        <bool>true</bool>
@@ -82,7 +91,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>409</width>
+     <width>400</width>
      <height>23</height>
     </rect>
    </property>
@@ -107,6 +116,7 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
+    <addaction name="separator"/>
     <addaction name="actionVisit_eCourses"/>
     <addaction name="actionLottery"/>
    </widget>
@@ -169,6 +179,9 @@
    <property name="toolTip">
     <string>Add a new note</string>
    </property>
+   <property name="shortcut">
+    <string>Ins</string>
+   </property>
   </action>
   <action name="actionDelete_Notes">
    <property name="icon">
@@ -180,6 +193,9 @@
    </property>
    <property name="toolTip">
     <string>Delete the selected note(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -467,7 +483,7 @@
    <sender>actionLottery</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>lottery()</slot>
+   <slot>startLottery()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -522,7 +538,7 @@
      <y>75</y>
     </hint>
     <hint type="destinationlabel">
-     <x>405</x>
+     <x>399</x>
      <y>90</y>
     </hint>
    </hints>
@@ -571,7 +587,7 @@
   <slot>deleteNotes()</slot>
   <slot>toCourses()</slot>
   <slot>exit()</slot>
-  <slot>lottery()</slot>
+  <slot>startLottery()</slot>
   <slot>saveNotebookAs()</slot>
   <slot>editNote(QModelIndex)</slot>
   <slot>disableNoteList(bool)</slot>
