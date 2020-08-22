@@ -71,7 +71,7 @@ $(function() {
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#a6c3e56968bc835e329eeeca26647ed79">columnCount</a>(const QModelIndex &amp;parent=QModelIndex()) const Q_DECL_OVERRIDE</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classNotebook.html#a6014a037af29275a1eb52dfd4601d2e6">data</a>(const QModelIndex &amp;index, int role=Qt::DisplayRole) const Q_DECL_OVERRIDE</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#a6ae94568c88d3f1a07b587deb3a254ed">erase</a>(SizeType idx)</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#ad82004c57c539408e434cbf596f8b845">erase</a>(const SizeType &amp;idx)</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classNotebook.html#a7a95b6ddb9eb4d314415c9ac42370c53">headerData</a>(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const Q_DECL_OVERRIDE</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#aba598ba162a413bd43153a95d15a896d">insert</a>(const Note &amp;note)</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classNotebook.html#acd27417ee2359c147ad3f4bf845e87e8">load</a>(QDataStream &amp;ist)</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
@@ -80,8 +80,9 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#a48d2a86e5f883b6f40b79b90d023f267">operator[]</a>(SizeType idx) const</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classNotebook.html#a0797a2580260ce66cd722267c3618eef">rowCount</a>(const QModelIndex &amp;parent=QModelIndex()) const Q_DECL_OVERRIDE</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#a1c57b0b3d304e6e773963d0657fa2da6">save</a>(QDataStream &amp;ost) const</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classNotebook.html#a9edf6478d01bf2cf4aa9e8d89f571dcf">size</a>() const</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#a97547e50f8c414a832e922873e6c4451">SizeType</a> typedef</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classNotebook.html#a2ae274a2d4c3ab8af184a10e255f4aed">signalIfEdited</a>(const QModelIndex &amp;idx, const QString &amp;prevtext, const QString &amp;prevtitle)</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classNotebook.html#a9edf6478d01bf2cf4aa9e8d89f571dcf">size</a>() const</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classNotebook.html#a97547e50f8c414a832e922873e6c4451">SizeType</a> typedef</td><td class="entry"><a class="el" href="classNotebook.html">Notebook</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

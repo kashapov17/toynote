@@ -100,12 +100,15 @@ $(function() {
 <tr class="memdesc:a7420d03d5da8d65c53e7324761a88faa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Название приложения.  <a href="config_8hpp.html#a7420d03d5da8d65c53e7324761a88faa">Подробнее...</a><br /></td></tr>
 <tr class="separator:a7420d03d5da8d65c53e7324761a88faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d238b52d243ebc8bf1e6fe14155a204"><td class="memItemLeft" align="right" valign="top"><a id="a2d238b52d243ebc8bf1e6fe14155a204"></a>
-const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a2d238b52d243ebc8bf1e6fe14155a204">Config::applicationVersion</a> [] = &quot;20200814&quot;</td></tr>
+const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a2d238b52d243ebc8bf1e6fe14155a204">Config::applicationVersion</a> [] = &quot;20200823&quot;</td></tr>
 <tr class="memdesc:a2d238b52d243ebc8bf1e6fe14155a204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Версия приложения <br /></td></tr>
 <tr class="separator:a2d238b52d243ebc8bf1e6fe14155a204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b424175c830683c3acd31f33567efa1"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a7b424175c830683c3acd31f33567efa1">Config::notebookFileNameFilter</a> [] = QT_TRANSLATE_NOOP(&quot;Config&quot;, &quot;Notebooks (*.tnb)&quot;)</td></tr>
-<tr class="memdesc:a7b424175c830683c3acd31f33567efa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Фильтр для имён файлов записных книжек.  <a href="config_8hpp.html#a7b424175c830683c3acd31f33567efa1">Подробнее...</a><br /></td></tr>
-<tr class="separator:a7b424175c830683c3acd31f33567efa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d4fd4d1f2316fff6837e2af7d6b2b9c"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8hpp.html#a5d4fd4d1f2316fff6837e2af7d6b2b9c">Config::binNotebookFileNameFilter</a> [] = QT_TRANSLATE_NOOP(&quot;Config&quot;, &quot;Notebooks (*.tnb)&quot;)</td></tr>
+<tr class="memdesc:a5d4fd4d1f2316fff6837e2af7d6b2b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Фильтры для имён файлов записных книжек.  <a href="config_8hpp.html#a5d4fd4d1f2316fff6837e2af7d6b2b9c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5d4fd4d1f2316fff6837e2af7d6b2b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b16791bc0d5dbc57dfcdb3359987dd6"><td class="memItemLeft" align="right" valign="top"><a id="a9b16791bc0d5dbc57dfcdb3359987dd6"></a>
+const char&#160;</td><td class="memItemRight" valign="bottom"><b>Config::textNotebookFileNameFilter</b> [] = QT_TRANSLATE_NOOP(&quot;Config&quot;, &quot;Text (*.txt)&quot;)</td></tr>
+<tr class="separator:a9b16791bc0d5dbc57dfcdb3359987dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Файл конфигурации. </p>
@@ -131,19 +134,20 @@ const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<a id="a7b424175c830683c3acd31f33567efa1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b424175c830683c3acd31f33567efa1">&#9670;&nbsp;</a></span>notebookFileNameFilter</h2>
+<a id="a5d4fd4d1f2316fff6837e2af7d6b2b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d4fd4d1f2316fff6837e2af7d6b2b9c">&#9670;&nbsp;</a></span>binNotebookFileNameFilter</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char Config::notebookFileNameFilter[] = QT_TRANSLATE_NOOP(&quot;Config&quot;, &quot;Notebooks (*.tnb)&quot;)</td>
+          <td class="memname">const char Config::binNotebookFileNameFilter[] = QT_TRANSLATE_NOOP(&quot;Config&quot;, &quot;Notebooks (*.tnb)&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Фильтр для имён файлов записных книжек. </p>
+<p>Фильтры для имён файлов записных книжек. </p>
+<p>.tnb для бинарных файлов .txt для текстовых файлов</p>
 <p>Фильтры используются диалогом QFileDialog, в котором пользователь выбирает файл при сохранении или открытии записной книжки. Обычно они отображаются в выпадающем списке внизу окна. При выборе фильтра в окне показываются только файлы, имена которых соответствуют одной из масок фильтра.</p>
 <p>Маски фильтра указываются в скобках через пробел. В одной строке можно указать несколько фильтров через парную точку с запятой (;;). Подробнее см. в документации QFileDialog. </p>
 

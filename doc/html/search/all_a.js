@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['opennotebook_59',['openNotebook',['../classMainWindow.html#a2903155d9c73d72c485237e1cb31894b',1,'MainWindow']]],
-  ['operator_3c_3c_60',['operator&lt;&lt;',['../note_8hpp.html#a913522204736846a5a0a3b61d53cb961',1,'operator&lt;&lt;(QDataStream &amp;ost, const Note &amp;note):&#160;note.hpp'],['../notebook_8hpp.html#a048272cda0cd6dc4b30f816f4d748d6f',1,'operator&lt;&lt;(QDataStream &amp;ost, const Notebook &amp;notebook):&#160;notebook.hpp']]],
-  ['operator_3e_3e_61',['operator&gt;&gt;',['../note_8hpp.html#ae51b292d5be9838b1ace888bf0cc72a5',1,'operator&gt;&gt;(QDataStream &amp;ist, Note &amp;note):&#160;note.hpp'],['../notebook_8hpp.html#a660d6e769903604b438b41a9f38233d5',1,'operator&gt;&gt;(QDataStream &amp;ist, Notebook &amp;notebook):&#160;notebook.hpp']]],
-  ['operator_5b_5d_62',['operator[]',['../classNotebook.html#a48d2a86e5f883b6f40b79b90d023f267',1,'Notebook']]]
+  ['n_43',['n',['../classlottery.html#a3f135b096eec23c7aa2e3ed18eb6dde1',1,'lottery']]],
+  ['newnote_44',['newNote',['../classMainWindow.html#a0a3fe050e90e7e6902ffa7fcc857df05',1,'MainWindow']]],
+  ['newnotebook_45',['newNotebook',['../classMainWindow.html#af2ac44c1d9bdffc1bce7e5f14ddf1feb',1,'MainWindow']]],
+  ['note_46',['Note',['../classNote.html',1,'Note'],['../classNote.html#a11dfaf68eb7a094b121add4adb18620e',1,'Note::Note()'],['../classNote.html#a56d77fceb836d355bfeed62dcfa63071',1,'Note::Note(QString title, QString text)'],['../classEditNoteDialog.html#a336757989a11c8d2e9d0f8bce5dda90c',1,'EditNoteDialog::note()']]],
+  ['note_2ecpp_47',['note.cpp',['../note_8cpp.html',1,'']]],
+  ['note_2ehpp_48',['note.hpp',['../note_8hpp.html',1,'']]],
+  ['notebook_49',['Notebook',['../classNotebook.html',1,'Notebook'],['../classNotebook.html#a1ca045e919168c2c40fe04962c7b6800',1,'Notebook::Notebook()']]],
+  ['notebook_2ecpp_50',['notebook.cpp',['../notebook_8cpp.html',1,'']]],
+  ['notebook_2ehpp_51',['notebook.hpp',['../notebook_8hpp.html',1,'']]],
+  ['notebookclosed_52',['notebookClosed',['../classMainWindow.html#a3755af9c7b0354245a3ac8a6dc892afe',1,'MainWindow']]],
+  ['notebookcreated_53',['notebookCreated',['../classMainWindow.html#aebb270f9a4973967506f3d31716d541b',1,'MainWindow']]],
+  ['notebookfilenamechanged_54',['notebookFileNameChanged',['../classMainWindow.html#a4e147f347eb4a7de3b55a059e428f793',1,'MainWindow']]],
+  ['notebookname_55',['notebookName',['../classMainWindow.html#a9dd23590d7f50cc5a8ec0600609586d4',1,'MainWindow']]],
+  ['notebookopened_56',['notebookOpened',['../classMainWindow.html#a2fd331408106b6d393c5b2de2a79582b',1,'MainWindow']]],
+  ['notebookready_57',['notebookReady',['../classMainWindow.html#ab13290eb445281ec41ff6db2eef3bdb7',1,'MainWindow']]],
+  ['notebooksaved_58',['notebookSaved',['../classMainWindow.html#a5b24f474cc48ffc5d8738ddf4cc2944e',1,'MainWindow']]],
+  ['notnewnote_59',['notNewNote',['../classEditNoteDialog.html#a1dce8d429f817b345fb9a0e7665aeb31',1,'EditNoteDialog']]]
 ];

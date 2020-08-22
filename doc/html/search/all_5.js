@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['insert_22',['insert',['../classNotebook.html#aba598ba162a413bd43153a95d15a896d',1,'Notebook']]],
-  ['isnotebookopen_23',['isNotebookOpen',['../classMainWindow.html#aef889e76145a694625cdf634299ad061',1,'MainWindow']]]
+  ['headerdata_22',['headerData',['../classNotebook.html#a7a95b6ddb9eb4d314415c9ac42370c53',1,'Notebook']]]
 ];

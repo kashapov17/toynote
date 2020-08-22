@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['headerdata_21',['headerData',['../classNotebook.html#a7a95b6ddb9eb4d314415c9ac42370c53',1,'Notebook']]]
+  ['editnote_16',['editNote',['../classMainWindow.html#ab981c550cd4bec81290db05d6ffb227e',1,'MainWindow']]],
+  ['editnotedialog_17',['EditNoteDialog',['../classEditNoteDialog.html',1,'EditNoteDialog'],['../classEditNoteDialog.html#aae78f19fa974f2996bcc47cc76d52bf3',1,'EditNoteDialog::EditNoteDialog()']]],
+  ['editnotedialog_2ecpp_18',['editnotedialog.cpp',['../editnotedialog_8cpp.html',1,'']]],
+  ['editnotedialog_2ehpp_19',['editnotedialog.hpp',['../editnotedialog_8hpp.html',1,'']]],
+  ['erase_20',['erase',['../classNotebook.html#ad82004c57c539408e434cbf596f8b845',1,'Notebook']]],
+  ['exit_21',['exit',['../classMainWindow.html#a627d7b538a0d60645e6c339bd787eeee',1,'MainWindow']]]
 ];
