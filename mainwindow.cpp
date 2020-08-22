@@ -75,7 +75,6 @@ MainWindow::MainWindow(QWidget *parent) :
         isNotebookSaved = true;
         setWindowModified(false);
     });
-
     // Действия, связанные с закрытием записной книжки
     connect(this, &MainWindow::notebookClosed, [this] { disableUIActions(true);});
     // Действия, связанные с готовностью записной книжки.
@@ -130,7 +129,12 @@ void MainWindow::reconnectWithNewModel()
     // при изменении области выделения в таблице заметок вызываем слот, отключающий кнопку удаления,
     // если нет выделенных заметок
     connect(mUi->notesView->selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, &MainWindow::disableDeleteAction);
+            [this]
+    {
+        // отключаем кнопку "удалить заметку", если нет выделенных заметок
+        mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()
+                                                         ->hasSelection());
+    });
     // данные изменились => есть что сохранить => ставим [*] в заголовке окна
     connect(mUi->notesView->model(), &QAbstractItemModel::dataChanged,
             [this]
@@ -138,13 +142,6 @@ void MainWindow::reconnectWithNewModel()
         isNotebookSaved = false;
         setWindowModified(true);
     });
-}
-
-void MainWindow::disableDeleteAction()
-{
-    // отключаем кнопку "удалить заметку", если нет выделенных заметок
-    mUi->actionDelete_Notes->setDisabled(!mUi->notesView->selectionModel()
-                                         ->hasSelection());
 }
 
 void MainWindow::disableNoteList(bool cond)
@@ -240,6 +237,10 @@ void MainWindow::startLottery()
 
 void MainWindow::exit()
 {
+    // Если есть несохранённые данные, то отображаем окно с
+    // предложением сохранить
+    closeNotebook();
+    // ... и закрываем приложение
     QCoreApplication::instance()->quit();
 }
 
@@ -295,13 +296,8 @@ bool MainWindow::saveNotebookAs(const saveMode &mode)
     }
     // Сохраняем записную книжку в выбранный файл
     saveNotebookToFile(fileName, mode);
-    // Если сохранение осуществляется в текстовый файл, менять имя
-    // текущего файла нет смысла, поскольку считать данные из такого файла
-    // невозможно. Другими словами, *просто* сохраняем заметки в текстовый файл
     if (mode != TEXT)
     {
-        // Устанавливаем выбранное имя файла в качестве текущего
-        setNotebookFileName(fileName);
         // Сигнализируем о готовности
         emit notebookReady();
         // Сигнализируем о сохранении записной книжки
@@ -594,8 +590,13 @@ void MainWindow::saveNotebookToFile(const QString &fileName, const saveMode &mod
         {
             throw std::runtime_error(tr("Unable to commit the save").toStdString());
         }
-        // Устанавливаем текущее имя файла
-        setNotebookFileName(fileName);
+        // Если сохранение осуществляется в текстовый файл, менять имя
+        // текущего файла нет смысла, поскольку считать данные из такого файла
+        // невозможно. Другими словами, *просто* сохранили заметки в текстовый файл
+        if (mode != TEXT)
+        {
+            setNotebookFileName(fileName);
+        }
     }
 
     catch (const std::exception &e)

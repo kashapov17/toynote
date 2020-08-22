@@ -136,8 +136,6 @@ private slots:
     void refreshWindowTitle();
     /// Отключает вид списка заметок.
     void disableNoteList(bool cond);
-    /// Отключает возможность удаления заметок, если нет выделенных заметок.
-    void disableDeleteAction();
     /// Отключает некоторые элементы графического интерфейса: создание заметок, сохранения и т.п.
     void disableUIActions(const bool &disable);
     /**
