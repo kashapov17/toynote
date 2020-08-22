@@ -14,6 +14,11 @@
         <source>Notebooks (*.tnb)</source>
         <translation>Записные книжки (*.tnb)</translation>
     </message>
+    <message>
+        <location filename="config.hpp" line="42"/>
+        <source>Text (*.txt)</source>
+        <translation>Текст (*.txt)</translation>
+    </message>
 </context>
 <context>
     <name>EditNoteDialog</name>
@@ -35,39 +40,39 @@
         <translation>Т&amp;екст:</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="81"/>
-        <location filename="editnotedialog.cpp" line="89"/>
-        <location filename="editnotedialog.cpp" line="97"/>
+        <location filename="editnotedialog.cpp" line="80"/>
+        <location filename="editnotedialog.cpp" line="88"/>
+        <location filename="editnotedialog.cpp" line="96"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="82"/>
+        <location filename="editnotedialog.cpp" line="81"/>
         <source>Unable to create the note with empty title and body</source>
         <translation>Невозможно создать пустую заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="83"/>
+        <location filename="editnotedialog.cpp" line="82"/>
         <source>Unable to save the note with empty title and body</source>
         <translation>Невозможно сохранить пустую заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="90"/>
+        <location filename="editnotedialog.cpp" line="89"/>
         <source>Unable to create the note with empty title</source>
         <translation>Невозможно создать заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="91"/>
+        <location filename="editnotedialog.cpp" line="90"/>
         <source>Unable to save the note with empty title</source>
         <translation>Невозможно сохранить заметку без названия</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="98"/>
+        <location filename="editnotedialog.cpp" line="97"/>
         <source>Unable to create the note with empty body</source>
         <translation>Невозможно создать пустую заметку</translation>
     </message>
     <message>
-        <location filename="editnotedialog.cpp" line="99"/>
+        <location filename="editnotedialog.cpp" line="98"/>
         <source>Unable to save the note with empty body</source>
         <translation>Невозможно сохранить пустую заметку</translation>
     </message>
@@ -117,7 +122,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="167"/>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="400"/>
         <source>New Note</source>
         <translation>Создать</translation>
     </message>
@@ -258,11 +263,12 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="313"/>
-        <source>About Qt</source>
-        <translation>О Qt</translation>
+        <source>About &amp;Qt</source>
+        <oldsource>About Qt</oldsource>
+        <translation>О &amp;Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="160"/>
+        <location filename="mainwindow.cpp" line="169"/>
         <source>About %1</source>
         <translation>О программе %1</translation>
     </message>
@@ -271,10 +277,9 @@
         <translation type="vanished">%1 %2&lt;br&gt;Автор: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Кирилл Пушкарёв&lt;/a&gt;, 2019.&lt;br&gt;Изменил в 2020 году &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Кашапов Ярослав Фанизович&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Сорцы: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;гитхаб&lt;/a&gt;&lt;br&gt;Лицензия: LGPLv3.&lt;br&gt;Данное приложение скомпоновано динамически с &lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;библиотекой Qt&lt;/a&gt; , версия %3.&lt;br&gt;Использованные иконки: &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="164"/>
         <source>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: WTFPL.&lt;br&gt;This application is dynamically linked against the&lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</source>
         <oldsource>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: WTFPL.&lt;br&gt;This application is dynamically linked against the &lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</oldsource>
-        <translation>%1 %2&lt;br&gt;Автор: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Кирилл Пушкарёв&lt;/a&gt;, 2019.&lt;br&gt;Изменил в 2020 году &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Кашапов Ярослав Фанизович&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Сорцы: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;гитхаб&lt;/a&gt;&lt;br&gt;Лицензия: WTFPL.&lt;br&gt;Данное приложение скомпоновано динамически с &lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;библиотекой Qt&lt;/a&gt; , версия %3.&lt;br&gt;Использованные иконки: &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</translation>
+        <translation type="vanished">%1 %2&lt;br&gt;Автор: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Кирилл Пушкарёв&lt;/a&gt;, 2019.&lt;br&gt;Изменил в 2020 году &lt;a href=&quot;mailto:y-kashapov@inbox.ru&quot;&gt;Кашапов Ярослав Фанизович&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Сорцы: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;гитхаб&lt;/a&gt;&lt;br&gt;Лицензия: WTFPL.&lt;br&gt;Данное приложение скомпоновано динамически с &lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;библиотекой Qt&lt;/a&gt; , версия %3.&lt;br&gt;Использованные иконки: &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Notepad</source>
@@ -324,23 +329,23 @@
         <translation type="vanished">ни-че-го!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="195"/>
+        <location filename="mainwindow.cpp" line="204"/>
         <source>Lottery</source>
         <translation>Лотерея</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="198"/>
+        <location filename="mainwindow.cpp" line="207"/>
         <source>Date: %1&lt;br&gt;Your prize: %2</source>
         <translation>Дата: %1&lt;br&gt;Выигрыш: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="452"/>
+        <location filename="mainwindow.cpp" line="472"/>
         <source>Do you really want to remove the following notes:&lt;br&gt;&lt;i&gt;%1&lt;i&gt;</source>
         <oldsource>Do you really want to remove the following notes:&lt;br&gt;&lt;i&gt;&lt;b&gt;%1&lt;b&gt;&lt;i&gt;</oldsource>
         <translation>Действительно удалить эти заметки:&lt;br&gt;&lt;i&gt;%1&lt;i&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="454"/>
+        <location filename="mainwindow.cpp" line="474"/>
         <source>Do you really want to remove the &lt;i&gt;%1&lt;i&gt;?</source>
         <oldsource>Do you really want to remove the &lt;i&gt;&lt;b&gt;%1&lt;i&gt;&lt;b&gt;?</oldsource>
         <translation>Действительно удалить &lt;i&gt;%1&lt;i&gt;?</translation>
@@ -350,48 +355,53 @@
         <translation type="vanished">Нет открытых записных книг</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="260"/>
+        <location filename="mainwindow.cpp" line="173"/>
+        <source>%1 %2&lt;br&gt;Author: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Kirill Pushkaryov&lt;/a&gt;, 2019.&lt;br&gt;Edited in 2020 by &lt;a href=&quot;mailto:ykashapov-ki19@stud.sfu-kras.ru&quot;&gt;Yaroslav Kashapov Fanizovich&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Sourses: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;github&lt;/a&gt;&lt;br&gt;License: WTFPL.&lt;br&gt;This application is dynamically linked against the&lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;Qt Library&lt;/a&gt; v. %3.&lt;br&gt;Icons by the &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</source>
+        <translation>%1 %2&lt;br&gt;Автор: &lt;a href=&quot;mailto:kpushkarev@sfu-kras.ru&quot;&gt;Кирилл Пушкарёв&lt;/a&gt;, 2019.&lt;br&gt;Изменил в 2020 году &lt;a href=&quot;mailto:ykashapov-ki19@stud.sfu-kras.ru&quot;&gt;Кашапов Ярослав Фанизович&lt;/a&gt;,&lt;br&gt;КИ19-07б, 031939609.&lt;br&gt;Сорцы: &lt;a href=&quot;https://github.com/kashapovd/toynote&quot;&gt;гитхаб&lt;/a&gt;&lt;br&gt;Лицензия: WTFPL.&lt;br&gt;Данное приложение скомпоновано динамически с &lt;br&gt;&lt;a href=&quot;https://www.qt.io/developers/&quot;&gt;библиотекой Qt&lt;/a&gt; , версия %3.&lt;br&gt;Использованные иконки: &lt;a href=&quot;http://tango.freedesktop.org/Tango_Icon_Library&quot;&gt;Tango Icon Library&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="269"/>
         <source>Save Notebook As</source>
         <translation>Сохранить записную книгу как</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="292"/>
+        <location filename="mainwindow.cpp" line="304"/>
         <source>Open Notebook</source>
         <translation>Открыть книгу</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="307"/>
+        <location filename="mainwindow.cpp" line="321"/>
         <source>open(): </source>
-        <translation>открыть(): </translation>
+        <translation>open(): </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="322"/>
+        <location filename="mainwindow.cpp" line="336"/>
         <source>Unable to open the file %1: %2</source>
         <translation>Невозможно открыть файл %1: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="349"/>
+        <location filename="mainwindow.cpp" line="366"/>
         <source>Would you like to save &lt;i&gt;%1&lt;i&gt;?</source>
         <oldsource>Would you like to save &lt;i&gt;&lt;b&gt;%1&lt;b&gt;&lt;i&gt;?</oldsource>
         <translation>Сохранить &lt;i&gt;%1&lt;i&gt;?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="401"/>
+        <location filename="mainwindow.cpp" line="420"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="401"/>
+        <location filename="mainwindow.cpp" line="420"/>
         <source>Unable to edit several notes</source>
         <translation>Невозможно редактировать несколько заметок сразу</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="407"/>
+        <location filename="mainwindow.cpp" line="426"/>
         <source>Note Editor</source>
         <translation>Редактор заметок</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="448"/>
+        <location filename="mainwindow.cpp" line="467"/>
         <source>&lt;br&gt;• </source>
         <translation>&lt;br&gt;• </translation>
     </message>
@@ -416,26 +426,26 @@
         <translation type="vanished">&lt;i&gt;&lt;b&gt;%1&lt;b&gt;&lt;i&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="477"/>
+        <location filename="mainwindow.cpp" line="499"/>
         <source>%1 - %2[*]</source>
         <translation>%1 - %2[*]</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="514"/>
+        <location filename="mainwindow.cpp" line="536"/>
         <source>+++ %1/%2 +++
 </source>
         <translation>+++ %1/%2 +++
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="516"/>
+        <location filename="mainwindow.cpp" line="538"/>
         <source>Title: %1
 </source>
         <translation>Заголовок: %1
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="517"/>
+        <location filename="mainwindow.cpp" line="539"/>
         <source>
 --- %1/%2 ---
 </source>
@@ -444,23 +454,23 @@
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="518"/>
+        <location filename="mainwindow.cpp" line="540"/>
         <source>
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="536"/>
+        <location filename="mainwindow.cpp" line="558"/>
         <source>Unable to commit the save</source>
         <translation>Не удалось сохранить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="545"/>
+        <location filename="mainwindow.cpp" line="567"/>
         <source>Unable to write to the file %1: %2</source>
         <translation>Невозсожно записать в файл %1: %2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="574"/>
+        <location filename="mainwindow.cpp" line="596"/>
         <source>Untitled</source>
         <translation>Без названия</translation>
     </message>
@@ -491,52 +501,52 @@
         <translation>вообще ничего :(</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="29"/>
+        <location filename="lottery.hpp" line="35"/>
         <source>Notepad</source>
         <translation>Блокнот</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="30"/>
+        <location filename="lottery.hpp" line="36"/>
         <source>Chinese Arduino Nano</source>
         <translation>Китайский клон Arduino Nano</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="31"/>
+        <location filename="lottery.hpp" line="37"/>
         <source>USB flash drive 64GB</source>
         <translation>USB-флешка, 64Гб</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="32"/>
+        <location filename="lottery.hpp" line="38"/>
         <source>Original Arduino Uno</source>
         <translation>Оригинальная Arduino Uno</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="33"/>
+        <location filename="lottery.hpp" line="39"/>
         <source>RaspberryPi 4 8GB</source>
         <translation>RaspberryPi 4 8GB</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="34"/>
+        <location filename="lottery.hpp" line="40"/>
         <source>Librem 5</source>
         <translation>Librem 5</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="35"/>
+        <location filename="lottery.hpp" line="41"/>
         <source>Ultabook with 10-gen i7</source>
         <translation>Ультрабук с ай7 10-ого поколения</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="36"/>
+        <location filename="lottery.hpp" line="42"/>
         <source>Metcal soldering station</source>
         <translation>Паяльная станция Metcal</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="37"/>
+        <location filename="lottery.hpp" line="43"/>
         <source>Brand new RTX 3080Ti</source>
         <translation>Видеокарта Nvidia RTX 3080Ti</translation>
     </message>
     <message>
-        <location filename="lottery.hpp" line="38"/>
+        <location filename="lottery.hpp" line="44"/>
         <source>Pass to IKIT</source>
         <translation>Пропуск в ИКИТ</translation>
     </message>
