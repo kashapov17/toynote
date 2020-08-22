@@ -108,7 +108,7 @@ public:
     /// Удаляет заметку с индексом @a idx из записной книжки.
     void erase(const SizeType &idx);
     /// Сигнализирует о изменении данных, если они были в результате редактирования заметки
-    void signalIfEdited(QModelIndex &idx, QString &prevtext, QString &prevtitle);
+    void signalIfEdited(const QModelIndex &idx, const QString &prevtext, const QString &prevtitle);
 private:
     /// Внутренний контейнер для хранения заметок записной книжки.
     QVector<Note> mNotes;

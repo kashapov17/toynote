@@ -206,7 +206,7 @@ void Notebook::erase(const SizeType &idx)
     dataChanged(index(idx, 1, QModelIndex()),index(idx, 1, QModelIndex()));
 }
 
-void Notebook::signalIfEdited(QModelIndex &idx, QString &prevtext, QString &prevtitle)
+void Notebook::signalIfEdited(const QModelIndex &idx, const QString &prevtext, const QString &prevtitle)
 {
     if (mNotes[idx.row()].text() != prevtext or mNotes[idx.row()].title() != prevtitle)
     {
