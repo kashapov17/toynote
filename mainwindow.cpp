@@ -121,6 +121,8 @@ void MainWindow::disableUIActions(const bool &dis)
     // Отключаем возможность закрывать записную книжку
     mUi->actionCloseNotebook->setDisabled(dis);
     // Отключаем возможность удалять если нет выделенных.
+    // проверяем выделение, так как disableUIActions()
+    // вызывается в том числе и по сигналу notebookReady, когда записная книга открыта
     mUi->actionDelete_Notes-> setDisabled(!mUi->notesView->selectionModel()->hasSelection());
 }
 
@@ -241,7 +243,7 @@ void MainWindow::exit()
     // предложением сохранить
     closeNotebook();
     // ... и закрываем приложение
-    QCoreApplication::instance()->quit();
+    qApp->quit();
 }
 
 void MainWindow::newNotebook()
@@ -444,11 +446,23 @@ bool MainWindow::newNote()
 
 void MainWindow::editNote(QModelIndex idx)
 {
+    // получаем количество выделенных заметок
+    int selectSize = mUi->notesView->selectionModel()->selectedRows().size();
     // Проверяем, что выделена одна заметка. Если нет, то выдаём ошибку и выходим.
-    if (mUi->notesView->selectionModel()->selectedRows().size() != 1) {
-        QMessageBox::warning(this, tr("Error"), tr("Unable to edit several notes"), QMessageBox::Ok);
+    if (selectSize != 1)
+    {
+        // entered() срабатывает даже если нет выделеных заметок, но вид таблицы активен
+        if (selectSize == 0)
+        {
+            QMessageBox::warning(this, tr("Error"), tr("Please, choose a note"), QMessageBox::Ok);
+        }
+        else
+        {
+            QMessageBox::warning(this, tr("Error"), tr("Unable to edit several notes"), QMessageBox::Ok);
+        }
         return;
     }
+
     Note *note = const_cast<Note *>(&(*mNotebook)[idx.row()]);
     // сохраняем значения текущей и ещё не отредактированной заметки
     QString noteText = note->text();
@@ -515,8 +529,6 @@ void MainWindow::deleteNotes()
         // Удаляем строку
         mNotebook->erase(*it);
     }
-    // Сигнализируем видам о изменении модели
-    emit mNotebook->dataChanged(idc.first(), idc.last());
 }
 
 void MainWindow::refreshWindowTitle()
